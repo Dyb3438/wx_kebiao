@@ -1,0 +1,19 @@
+<!--pages/schedule/schedule.wxml-->
+<view class='top'>
+  <view class='left'></view>  
+  <view class='center'>
+    <view class='time'>
+      <text >第{{thisWeek}}周</text>
+      <text style='font-size:10px'>{{semester}}</text>
+    </view>
+  </view>
+  <view class='right'>
+    <view class='plus'>+</view>
+  </view> 
+</view>
+<view class='container'>
+  <block wx:for='{{date}}'>
+    <view>{{item.day}} {{item.date}}</view>
+  </block>
+</view>
+<view class='bottom'></view>
