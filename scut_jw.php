@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ALL^E_NOTICE^E_WARNING);
+//error_reporting(E_ALL^E_NOTICE^E_WARNING);
 function curl($url,$cookie)
 {
     $ch = curl_init();
@@ -68,10 +68,7 @@ function restore($class,$key){
 }
 
 if($_POST==null) {
-    session_start();
-    $id=session_id();
-    $_SESSION['id']=$id;
-    $cookie = tempnam('./cookie', 'cookie');
+    $cookie = tempnam('./temp', 'cookie');
     $img = curl("http://110.65.10.240/(zujcvqfvef0yq545wpdmw3fr)/CheckCode.aspx",$cookie);
     $img = base64_encode($img);
     echo "<form action='' method='post'><br>";
@@ -79,13 +76,11 @@ if($_POST==null) {
     echo "<input type='password' placeholder='密码' name='pw' value=''><br>";
     echo "<img src='data:image/gif;base64,$img'><br>";
     echo "<input type='text' placeholder='验证码' name='txtSecretCode' value=''><br>";
-    echo "<input type='hidden'name='cookie' value='$cookie'>";
+    echo "<input type='hidden' name='cookie' value='$cookie'>";
     echo "<input type='submit' value='登录'>";
     echo "</form>";
 }else {
     session_start();
-    $id = session_id();
-    $_SESSION['id'] = $id;
     $_SESSION['xh'] = $_POST['xh'];
     $xh = $_POST['xh'];
     //header("Content-type: text/html; charset=gb2312");
@@ -111,9 +106,7 @@ if($_POST==null) {
     preg_match_all($alert_error, $index, $error);
     if ($error[1] != null) {
         $error[1][0] = iconv('gb2312', 'utf-8', $error[1][0]);
-        echo $error[1][0];
     }
-
     $xm_pattern = '/<span id="xhxm">([^<]+)<\/span>/';
     preg_match_all($xm_pattern, $index, $xm);
     if (isset($xm[1][0])) {
@@ -172,7 +165,8 @@ if($_POST==null) {
                 }
             }
         }
-        print_r($class_list);
-        // echo json_encode($content);
+        echo json_encode(array("result"=>"1","kebiao"=>$class_list));
+    }else{
+        echo json_encode(array("result"=>"0","msg"=>$error[1][0]));
     }
 }

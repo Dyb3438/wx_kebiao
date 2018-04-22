@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteRule ^captcha$  src/captcha.php [QSA,L]
+RewriteRule ^kebiao/loading$  src/kebiao.php [QSA,L]
