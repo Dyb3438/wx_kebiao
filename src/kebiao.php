@@ -6,8 +6,8 @@ session_start();
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use dyb/data_restore;
-use dyb/curl;
+use dyb\data_restore;
+use dyb\curl;
 $data_restore=new data_restore();
 $curl=new curl();
 
@@ -49,6 +49,23 @@ preg_match_all($xm_pattern, $index, $xm);
 if (isset($xm[1][0])) {
     $xm = substr($xm[1][0], 0, -4);
     $kebiao = $curl->login_curl("http://110.65.10.240/$rnd/xskbcx.aspx?xh=$xh&xm=$xm&gnmkdm=N121603", $cookie,$rnd);
+    //取出信息栏
+    $information_pattern="/<span id=\"Label5\">(.+)<\/span>|<span id=\"Label6\">(.+)<\/span>|<span id=\"Label7\">(.+)<\/span>|<span id=\"Label8\">(.+)<\/span>|<span id=\"Label9\">(.+)<\/span>/";
+    preg_match_all($information_pattern,$kebiao,$information);
+    foreach($information[0] as $key=>$value){
+        $information[0][$key]=iconv("gb2312","utf-8",$value);
+    }
+    preg_match_all("/学号：(.+)<\/span>/u",$information[0][0],$xuehao);
+    $xuehao=$xuehao[1][0];
+    preg_match_all("/姓名：(.+)<\/span>/u",$information[0][1],$xingming);
+    $xingming=$xingming[1][0];
+    preg_match_all("/学院：(.+)<\/span>/u",$information[0][2],$xueyuan);
+    $xueyuan=$xueyuan[1][0];
+    preg_match_all("/专业：(.+)<\/span>/u",$information[0][3],$zhuanye);
+    $zhuanye=$zhuanye[1][0];
+    preg_match_all("/行政班：(.+)<\/span>/u",$information[0][4],$xingzhengban);
+    $xingzhengban=$xingzhengban[1][0];
+    //爬取课表
     $table_pattern = "/<tr>[\s\S]+?<\/tr>/";
     preg_match_all($table_pattern, $kebiao, $table);
     $tbody = $table[0];
@@ -102,7 +119,7 @@ if (isset($xm[1][0])) {
             }
         }
     }
-    echo json_encode(array("result"=>"1","kebiao"=>$class_list));
+    echo json_encode(array("result"=>"1","kebiao"=>$class_list,"information"=>array("xuehao"=>$xuehao,"xingming"=>$xingming,"xueyuan"=>$xueyuan,"zhuanye"=>$zhuanye,"xingzhengban"=>$xingzhengban)));
 }else{
     echo json_encode(array("result"=>"0","msg"=>$error[1][0]));
 }
