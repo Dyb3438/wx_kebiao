@@ -1,13 +1,11 @@
 <!--pages/schedule/schedule.wxml-->
 <view class='top'>
-    <view class='left'></view>
-    <view class='center'>
-        <view class='week'>
-            <text>第{{thisWeek}}周</text>
-            <text style='font-size:25rpx'>{{semester}}</text>
-        </view>
+    <view class='top-left'></view>
+    <view class='top-center'>
+        <text>第{{thisWeek}}周</text>
+        <text class="semester">{{semester}}</text>
     </view>
-    <view class='right'>
+    <view class='top-right'>
         <view class='plus'>+</view>
     </view>
 </view>
