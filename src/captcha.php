@@ -1,18 +1,19 @@
 <?php
+namespace dyb;
+
 error_reporting(E_ALL^E_NOTICE^E_WARNING);
-function curl($url,$cookie)
-{
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_COOKIEJAR,$cookie);
-    curl_setopt($ch, CURLOPT_HEADER, 0);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    $result = curl_exec($ch);
-    curl_close($ch);
-    return $result;
-}
+
+require_once __DIR__ . "/../vendor/autoload.php";
+
+use dyb\curl;
+
+$curl=new curl();
+
 $cookie = tempnam('./temp', 'cookie');
-$img = curl("http://110.65.10.240/(zujcvqfvef0yq545wpdmw3fr)/CheckCode.aspx",$cookie);
+$root = $curl->curl("http://110.65.10.240",$cookie);
+//取教务网与验证码绑定的随机数
+preg_match("/<a href='\/(.*)\/default2.aspx'>/", $root, $arr);
+$img=$curl->login_curl("http://110.65.10.240/$arr[1]/CheckCode.aspx",$cookie,$arr[1]);
 $img = base64_encode($img);
 $picture="data:image/gif;base64,".$img;
-echo json_encode(array("picture"=>$picture,"cookie"=>$cookie));
+echo json_encode(array("picture"=>$picture,"cookie"=>$cookie,"rnd"=>$arr[1]));
