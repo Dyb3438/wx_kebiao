@@ -15,12 +15,11 @@ $curl=new curl();
 $xh = $_POST['xh'];
 $pw=$_POST['pw'];
 $code=$_POST['txtSecretCode'];
-$cookie = $_POST['cookie'];
 $rnd=$_POST['rnd'];
 
 $_SESSION['xh'] =$xh;
 //登录前获取隐藏字段
-$default2 = $curl->login_curl("http://110.65.10.240/$rnd/default2.aspx", $cookie,$rnd);
+$default2 = $curl->login_curl("http://110.65.10.240/$rnd/default2.aspx",$rnd);
 $hidden_pattern = '/<input type="hidden" name="__VIEWSTATE" value="([^"]+)" \/>/';
 preg_match_all($hidden_pattern, $default2, $hidden_output);
 $__VIEWSTATE = $hidden_output[1][0];
@@ -36,7 +35,7 @@ $post = array(
     "hidsc" => ""
 );
 //登录获取正文
-$index = $curl->login_curl("http://110.65.10.240/$rnd/default2.aspx", $cookie,$rnd, $post);
+$index = $curl->login_curl("http://110.65.10.240/$rnd/default2.aspx",$rnd, $post);
 //找出登录时的错误
 $alert_error = "/alert\('([^']+)'\)/";
 preg_match_all($alert_error, $index, $error);
@@ -48,7 +47,7 @@ $xm_pattern = '/<span id="xhxm">([^<]+)<\/span>/';
 preg_match_all($xm_pattern, $index, $xm);
 if (isset($xm[1][0])) {
     $xm = substr($xm[1][0], 0, -4);
-    $kebiao = $curl->login_curl("http://110.65.10.240/$rnd/xskbcx.aspx?xh=$xh&xm=$xm&gnmkdm=N121603", $cookie,$rnd);
+    $kebiao = $curl->login_curl("http://110.65.10.240/$rnd/xskbcx.aspx?xh=$xh&xm=$xm&gnmkdm=N121603",$rnd);
     //取出信息栏
     $information_pattern="/<span id=\"Label5\">(.+)<\/span>|<span id=\"Label6\">(.+)<\/span>|<span id=\"Label7\">(.+)<\/span>|<span id=\"Label8\">(.+)<\/span>|<span id=\"Label9\">(.+)<\/span>/";
     preg_match_all($information_pattern,$kebiao,$information);

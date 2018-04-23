@@ -5,10 +5,9 @@ require_once "../vendor/autoload.php";
 
 class curl
 {
-    function login_curl($url,$cookie,$rnd,$post=null){
+    function login_curl($url,$rnd,$post=null){
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_COOKIEFILE,$cookie);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -20,11 +19,10 @@ class curl
         curl_close($ch);
         return $result;
     }
-    function curl($url,$cookie)
+    function curl($url)
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_COOKIEJAR,$cookie);
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $result = curl_exec($ch);

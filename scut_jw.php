@@ -1,20 +1,20 @@
 <?php
 //error_reporting(E_ALL^E_NOTICE^E_WARNING);
-function curl($url,$cookie)
+function curl($url)
 {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_COOKIEJAR,$cookie);
+    //curl_setopt($ch, CURLOPT_COOKIEJAR,$cookie);
     curl_setopt($ch, CURLOPT_HEADER, 0);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $result = curl_exec($ch);
     curl_close($ch);
     return $result;
 }
-function login_curl($url,$cookie,$rnd,$post=null){
+function login_curl($url,$rnd,$post=null){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_COOKIEFILE,$cookie);
+    //curl_setopt($ch, CURLOPT_COOKIEFILE,$cookie);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
     curl_setopt($ch, CURLOPT_HEADER, 0);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -68,18 +68,18 @@ function restore($class,$key){
 }
 
 if($_POST==null) {
-    $cookie = tempnam('./temp', 'cookie');
-    $root = curl("http://110.65.10.240",$cookie);
+    //$cookie = tempnam('./temp', 'cookie');
+    $root = curl("http://110.65.10.240");
     preg_match("/<a href='\/(.*)\/default2.aspx'>/", $root, $arr);
 //print_r($arr);
-    $img=login_curl("http://110.65.10.240/$arr[1]/CheckCode.aspx",$cookie,$arr[1]);
+    $img=login_curl("http://110.65.10.240/$arr[1]/CheckCode.aspx",$arr[1]);
     $img = base64_encode($img);
     echo "<form action='' method='post'><br>";
     echo "<input type='text' placeholder='学号' name='xh' value=''><br>";
     echo "<input type='password' placeholder='密码' name='pw' value=''><br>";
     echo "<img src='data:image/gif;base64,$img'><br>";
     echo "<input type='text' placeholder='验证码' name='txtSecretCode' value=''><br>";
-    echo "<input type='hidden' name='cookie' value='$cookie'>";
+    //echo "<input type='hidden' name='cookie' value='$cookie'>";
     echo "<input type='hidden' name='rnd' value='$arr[1]'>";
     echo "<input type='submit' value='登录'>";
     echo "</form>";
@@ -89,8 +89,8 @@ if($_POST==null) {
     $xh = $_POST['xh'];
     $rnd=$_POST['rnd'];
     //header("Content-type: text/html; charset=gb2312");
-    $cookie = $_POST['cookie'];
-    $default2 = login_curl("http://110.65.10.240/$rnd/default2.aspx", $cookie,$rnd);
+    //$cookie = $_POST['cookie'];
+    $default2 = login_curl("http://110.65.10.240/$rnd/default2.aspx",$rnd);
     $hidden_pattern = '/<input type="hidden" name="__VIEWSTATE" value="([^"]+)" \/>/';
     preg_match_all($hidden_pattern, $default2, $hidden_output);
     $__VIEWSTATE = $hidden_output[1][0];
@@ -105,7 +105,7 @@ if($_POST==null) {
         "hidPdrs" => "",
         "hidsc" => ""
     );
-    $index = login_curl("http://110.65.10.240/$rnd/default2.aspx", $cookie,$rnd, $post);
+    $index = login_curl("http://110.65.10.240/$rnd/default2.aspx",$rnd, $post);
 
     $alert_error = "/alert\('([^']+)'\)/";
     preg_match_all($alert_error, $index, $error);
@@ -116,7 +116,7 @@ if($_POST==null) {
     preg_match_all($xm_pattern, $index, $xm);
     if (isset($xm[1][0])) {
         $xm = substr($xm[1][0], 0, -4);
-        $kebiao = login_curl("http://110.65.10.240/$rnd/xskbcx.aspx?xh=$xh&xm=$xm&gnmkdm=N121603", $cookie,$rnd);
+        $kebiao = login_curl("http://110.65.10.240/$rnd/xskbcx.aspx?xh=$xh&xm=$xm&gnmkdm=N121603",$rnd);
         //取出信息栏
         $information_pattern="/<span id=\"Label5\">(.+)<\/span>|<span id=\"Label6\">(.+)<\/span>|<span id=\"Label7\">(.+)<\/span>|<span id=\"Label8\">(.+)<\/span>|<span id=\"Label9\">(.+)<\/span>/";
         preg_match_all($information_pattern,$kebiao,$information);
