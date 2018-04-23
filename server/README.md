@@ -32,13 +32,6 @@
 <td></td>
 </tr>
 <tr>
-<td>cookie文件名</td>
-<td>cookie</td>
-<td>String</td>
-<td>Y</td>
-<td>用于下次提交表单</td>
-</tr>
-<tr>
 <td>教务网地址随机数</td>
 <td>rnd</td>
 <td>String</td>
@@ -86,13 +79,6 @@
 <tr>
 <td>验证码</td>
 <td>txtSecretCode</td>
-<td>String</td>
-<td>Y</td>
-<td></td>
-</tr>
-<tr>
-<td>cookie文件名</td>
-<td>cookie</td>
 <td>String</td>
 <td>Y</td>
 <td></td>
