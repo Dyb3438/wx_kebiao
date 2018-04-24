@@ -8,8 +8,10 @@ require_once __DIR__ . "/../vendor/autoload.php";
 
 use dyb\data_restore;
 use dyb\curl;
+use dyb\kb_week;
 $data_restore=new data_restore();
 $curl=new curl();
+$week=new kb_week();
 
 //前端传来的数据
 $xh = $_POST['xh'];
@@ -19,7 +21,7 @@ $rnd=$_POST['rnd'];
 
 $_SESSION['xh'] =$xh;
 //登录前获取隐藏字段
-$default2 = $curl->login_curl("http://110.65.10.240/$rnd/default2.aspx",$rnd);
+$default2 = $curl->login_curl("http://$rnd/default2.aspx",$rnd);
 $hidden_pattern = '/<input type="hidden" name="__VIEWSTATE" value="([^"]+)" \/>/';
 preg_match_all($hidden_pattern, $default2, $hidden_output);
 $__VIEWSTATE = $hidden_output[1][0];
@@ -35,7 +37,7 @@ $post = array(
     "hidsc" => ""
 );
 //登录获取正文
-$index = $curl->login_curl("http://110.65.10.240/$rnd/default2.aspx",$rnd, $post);
+$index = $curl->login_curl("http://$rnd/default2.aspx",$rnd, $post);
 //找出登录时的错误
 $alert_error = "/alert\('([^']+)'\)/";
 preg_match_all($alert_error, $index, $error);
@@ -47,7 +49,7 @@ $xm_pattern = '/<span id="xhxm">([^<]+)<\/span>/';
 preg_match_all($xm_pattern, $index, $xm);
 if (isset($xm[1][0])) {
     $xm = substr($xm[1][0], 0, -4);
-    $kebiao = $curl->login_curl("http://110.65.10.240/$rnd/xskbcx.aspx?xh=$xh&xm=$xm&gnmkdm=N121603",$rnd);
+    $kebiao = $curl->login_curl("http://$rnd/xskbcx.aspx?xh=$xh&xm=$xm&gnmkdm=N121603",$rnd);
     //取出信息栏
     $information_pattern="/<span id=\"Label5\">(.+)<\/span>|<span id=\"Label6\">(.+)<\/span>|<span id=\"Label7\">(.+)<\/span>|<span id=\"Label8\">(.+)<\/span>|<span id=\"Label9\">(.+)<\/span>/";
     preg_match_all($information_pattern,$kebiao,$information);
@@ -118,7 +120,8 @@ if (isset($xm[1][0])) {
             }
         }
     }
-    echo json_encode(array("result"=>"1","kebiao"=>$class_list,"information"=>array("xuehao"=>$xuehao,"xingming"=>$xingming,"xueyuan"=>$xueyuan,"zhuanye"=>$zhuanye,"xingzhengban"=>$xingzhengban)));
+
+    echo json_encode(array("result"=>"1","kebiao"=>$class_list,"information"=>array("xuehao"=>$xuehao,"xingming"=>$xingming,"xueyuan"=>$xueyuan,"zhuanye"=>$zhuanye,"xingzhengban"=>$xingzhengban),"week"=>$week->get_week()));
 }else{
     echo json_encode(array("result"=>"0","msg"=>$error[1][0]));
 }

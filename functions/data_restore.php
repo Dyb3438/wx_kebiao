@@ -41,7 +41,18 @@ class data_restore
                 $class[6][$key] = "0";
                 break;
         }
-        $class[4][$key] = "[" . $class[4][$key] . "]";
+        preg_match_all("/([0-9]+)-([0-9]+)/",$class[4][$key],$result_long);
+        $class[4][$key]=array($result_long[1][0],$result_long[2][0]);
+        preg_match_all("/([0-9]+),/",$class[3][$key].",",$result_class);
+        $class[3][$key]=array();
+        foreach($result_class[1] as $value){
+            array_push($class[3][$key],$value);
+        }
         return $class;
+    }
+    //修复异常的分离
+    function combine_class($class)
+    {
+      foreach
     }
 }
