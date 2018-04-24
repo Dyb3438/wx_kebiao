@@ -9,15 +9,12 @@ page {
 .top {
     display: flex;
     width: 100%;
-    /*height: 100rpx;*/
     justify-content: space-between;
     overflow: hidden;
 }
 
 .top-center {
     display: flex;
-    /*height: 100%;*/
-    /*flex-grow: 1;*/
     flex-direction: column;
     text-align: center;
 }
@@ -27,17 +24,14 @@ page {
 }
 
 .top-left {
-    /*height: 100%;*/
     width: 20%;
 }
 
 .top-right {
-    /*height: 100%;*/
     width: 20%;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    /*text-align: center;*/
     align-items: center;
 }
 
@@ -59,13 +53,11 @@ page {
     font-size: 75rpx;
     font-weight: 200;
     line-height: 1;
-    /*display: flex;*/
 
 }
 
 .date {
     display: flex;
-    /*height: 100rpx;*/
     padding: 20rpx 0;
     font-size: 25rpx;
 }
@@ -91,15 +83,11 @@ page {
 
 .schedule-time {
     width: 10%;
-    /*height: 0;*/
     font-size: 20rpx;
     text-align: center;
-    /*display: flex;*/
-    /*flex-direction: column;*/
 }
 
 .schedule-time text {
-    /*flex-basis: 0%;*/
     width: 100%;
     height: 120rpx;
     display: block;
@@ -109,7 +97,6 @@ page {
     position: relative;
     width: 0;
     flex-grow: 1;
-    /*display: flex;*/
     font-size: 24rpx;
 }
 
@@ -124,10 +111,6 @@ page {
     display: inline-block;
     border-radius: 10rpx;
     padding: 5rpx;
-    background-color: green;
-    /*white-space: nowrap;*/
-    word-break: break-all;
-    word-wrap: break-word;
-    text-overflow: ellipsis;
+    background-color: rgb(100,170,55);
     overflow: hidden;
 }
