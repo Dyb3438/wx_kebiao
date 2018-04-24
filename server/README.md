@@ -1,45 +1,10 @@
 # 微信小程序接口文档
------
+
 ## 一、抓取课表
------
+
 ### 1、验证码接口
------
+
 <table>
-<<<<<<< HEAD
-<tr>
-<td>请求地址：</td>
-<td colspan="4">http://120.79.221.7/wx_kebiao/captcha</td>
-</tr>
-<tr>
-<td>请求方式：</td>
-<td colspan="4">GET</td>
-</tr> 
-<tr>
-<td>返回值类型：</td>
-<td colspan="4">Json</td>
-</tr>
-<tr>
-<td>返回参数</td>
-<td>参数名</td>
-<td>参数类型</td>
-<td>是否必填</td>
-<td>说明</td>
-</tr>
-<tr>
-<td>验证码</td>
-<td>picture</td>
-<td>base64</td>
-<td>Y</td>
-<td></td>
-</tr>
-<tr>
-<td>教务网地址随机数</td>
-<td>rnd</td>
-<td>String</td>
-<td>Y</td>
-<td>用于下次提交表单</td>
-</tr>
-=======
     <tr>
         <td>请求地址：</td>
         <td colspan="4">http://120.79.221.7/wx_kebiao/captcha</td>
@@ -73,99 +38,11 @@
         <td>Y</td>
         <td>用于下次提交表单</td>
     </tr>
->>>>>>> a0b841ad8b258adf5f5a01da7b439e67aa959b19
 </table>
 
 ### 2、课表录入接口
--------
+
 <table>
-<<<<<<< HEAD
-<tr>
-<td>请求地址：</td>
-<td colspan="4">http://120.79.221.7/wx_kebiao/kebiao/loading</td>
-</tr>
-<tr>
-<td>请求方式：</td>
-<td colspan="4">POST</td>
-</tr>
-<tr>
-<td>返回值类型：</td>
-<td colspan="4">Json</td>
-</tr>
-<tr>
-<td>请求参数</td>
-<td>参数名</td>
-<td>参数类型</td>
-<td>是否必填</td>
-<td>说明</td>
-</tr>
-<tr>
-<td>学号</td>
-<td>xh</td>
-<td>Integer</td>
-<td>Y</td>
-<td></td>
-</tr>
-<tr>
-<td>密码</td>
-<td>pw</td>
-<td>String</td>
-<td>Y</td>
-<td></td>
-</tr>
-<tr>
-<td>验证码</td>
-<td>txtSecretCode</td>
-<td>String</td>
-<td>Y</td>
-<td></td>
-</tr>
-<tr>
-<td>教务网地址随机数</td>
-<td>rnd</td>
-<td>String</td>
-<td>Y</td>
-<td></td>
-</tr>
-<tr>
-<td colspan="5">返回结果</td>
-</tr>
-<tr>
-<td>返回参数</td>
-<td>参数名</td>
-<td>参数类型</td>
-<td>是否必填</td>
-<td>说明</td>
-</tr>
-<tr>
-<td>结果</td>
-<td>result</td>
-<td>Integer</td>
-<td>Y</td>
-<td>1为抓取成功;0为出错</td>
-</tr>
-<tr>
-<td>课表内容</td>
-<td>kebiao</td>
-<td>array</td>
-<td>N</td>
-<td>当result为1时返回此参数，0时不存在</td>
-</tr>
-<tr>
-<td>学生信息</td>
-<td>information</td>
-<td>array</td>
-<td>N</td>
-<td>当result为1时返回此参数，0时不存在</td>
-</tr>
-<tr>
-<td>出错原因</td>
-<td>msg</td>
-<td>String</td>
-<td>N</td>
-<td>当result为0时返回此参数，1时不存在</td>
-</tr>
-=======
     <tr>
         <td>请求地址：</td>
         <td colspan="4">http://120.79.221.7/wx_kebiao/kebiao/loading</td>
@@ -251,7 +128,6 @@
         <td>N</td>
         <td>当result为0时返回此参数，1时不存在</td>
     </tr>
->>>>>>> a0b841ad8b258adf5f5a01da7b439e67aa959b19
 </table>
 
 #### 课表格式：
