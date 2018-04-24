@@ -122,6 +122,13 @@
         <td>当result为1时返回此参数，0时不存在</td>
     </tr>
     <tr>
+            <td>周数</td>
+            <td>week</td>
+            <td>Integer</td>
+            <td>N</td>
+            <td>当result为1时返回此参数，0时不存在</td>
+        </tr>
+    <tr>
         <td>出错原因</td>
         <td>msg</td>
         <td>String</td>
