@@ -9,14 +9,15 @@ page {
 .top {
     display: flex;
     width: 100%;
-    height: 100rpx;
+    /*height: 100rpx;*/
+    justify-content: space-between;
     overflow: hidden;
 }
 
 .top-center {
     display: flex;
-    height: 100%;
-    flex-grow: 1;
+    /*height: 100%;*/
+    /*flex-grow: 1;*/
     flex-direction: column;
     text-align: center;
 }
@@ -26,13 +27,18 @@ page {
 }
 
 .top-left {
-    height: 100%;
+    /*height: 100%;*/
     width: 20%;
 }
 
 .top-right {
-    height: 100%;
+    /*height: 100%;*/
     width: 20%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    /*text-align: center;*/
+    align-items: center;
 }
 
 .bottom {
@@ -48,35 +54,80 @@ page {
     flex-grow: 1;
 }
 
-.plus {
-    display: flex;
-    font-size: 100rpx;
+.plus:before {
+    content: "+";
+    font-size: 75rpx;
     font-weight: 200;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+    line-height: 1;
+    /*display: flex;*/
+
 }
 
 .date {
     display: flex;
+    /*height: 100rpx;*/
+    padding: 20rpx 0;
+    font-size: 25rpx;
 }
 
-.date view {
+.date-month {
+    width: 10%;
     text-align: center;
-    display: flex;
-    flex-direction: column;
 }
 
-.day {
+.date-day {
     flex-grow: 1;
     flex-shrink: 1;
-}
-
-#month {
-    width: 10%;
+    text-align: center;
 }
 
 .schedule {
+    height: 0;
+    display: flex;
     flex-grow: 1;
+    flex-shrink: 1;
     overflow-y: auto;
+}
+
+.schedule-time {
+    width: 10%;
+    /*height: 0;*/
+    font-size: 20rpx;
+    text-align: center;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+}
+
+.schedule-time text {
+    /*flex-basis: 0%;*/
+    width: 100%;
+    height: 120rpx;
+    display: block;
+}
+
+.schedule-class {
+    position: relative;
+    width: 0;
+    flex-grow: 1;
+    /*display: flex;*/
+    font-size: 24rpx;
+}
+
+.schedule-class-box {
+    position: absolute;
+    width:  14.285714285714%;
+}
+
+.schedule-class-content {
+    width: calc(100% - 12rpx);
+    height: calc(100% - 12rpx);
+    display: inline-block;
+    border-radius: 10rpx;
+    padding: 5rpx;
+    background-color: green;
+    /*white-space: nowrap;*/
+    word-break: break-all;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }

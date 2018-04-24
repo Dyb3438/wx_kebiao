@@ -2,28 +2,38 @@
 <view class='top'>
     <view class='top-left'></view>
     <view class='top-center'>
+        <picker range="{{[1,2,3]}}" value="{{index}}">
+            <view>当前选择：{{index}}</view>
+        </picker>
         <text>第{{thisWeek}}周</text>
         <text class="semester">{{semester}}</text>
     </view>
     <view class='top-right'>
-        <view class='plus'>+</view>
+        <text class='plus'></text>
     </view>
 </view>
 <view class='container'>
     <view class='date'>
-        <view id='month'>
-            <text>{{month}}</text>
-            <text>月</text>
-        </view>
+        <text class="date-month">{{month}}\n月</text>
         <block wx:for='{{date}}' wx:key="day">
-            <view class='day'>
-                <text>{{item.day}}</text>
-                <text>{{item.date}}</text>
-            </view>
+            <text class='date-day'>{{item.day}}\n{{item.date}}</text>
         </block>
     </view>
     <view class='schedule'>
-        <view class=''></view>
+        <view class='schedule-time'>
+            <block wx:for="{{scheduleTime}}">
+                <text>{{index + 1}}\n{{item}}</text>
+            </block>
+        </view>
+        <view class="schedule-class">
+            <block wx:for="{{class}}">
+                <block wx:if="{{thisWeek >= item.long[0] && thisWeek <= item.long[1]}}">
+                    <view wx:if="{{item.single_week == 0 || item.single_week == 1 && (thisWeek % 2) == 1 || item.single_week == 2 && (thisWeek % 2) == 0}}" class="schedule-class-box" style="top: {{(item.class[0]-1) * 120}}rpx;left: {{(item.day-1) * 14.285714285714}}%; height: {{item.class.length*120}}rpx;">
+                        <text class="schedule-class-content">{{item.classname}}<block wx:if="{{item.classroom != ''}}">\n@{{item.classroom}}</block></text>
+                    </view>
+                </block>
+            </block>
+        </view>
     </view>
 </view>
-<view class='bottom'></view>
+<!-- <view class='bottom'></view> -->
