@@ -7,8 +7,10 @@
             <view class="semester">{{semester}}</view>
         </picker>
     </view>
-    <view class='top-right'>
-        <text class='plus'></text>
+    <view class='top-right' bind:tap="">
+        <navigator class="" url="/pages/jw/jw" open-type="navigate">
+            <text class='plus'></text>
+        </navigator>
     </view>
 </view>
 <view class='container'>
