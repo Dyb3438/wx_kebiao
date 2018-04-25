@@ -120,7 +120,7 @@ if (isset($xm[1][0])) {
             }
         }
     }
-
+    $class_list=$data_restore->combine_class($class_list);
     echo json_encode(array("result"=>"1","kebiao"=>$class_list,"information"=>array("xuehao"=>$xuehao,"xingming"=>$xingming,"xueyuan"=>$xueyuan,"zhuanye"=>$zhuanye,"xingzhengban"=>$xingzhengban),"week"=>$week->get_week()));
 }else{
     echo json_encode(array("result"=>"0","msg"=>$error[1][0]));

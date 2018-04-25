@@ -53,6 +53,23 @@ class data_restore
     //修复异常的分离
     function combine_class($class)
     {
-      foreach
+        $class_result=array();
+        foreach($class as $key =>$value)
+        {
+            $status=0;
+            foreach ($class_result as $i => $temp) {
+                if ($value['classname'] == $temp['classname'] && $value['day'] == $temp['day'] && $value['teacher'] == $temp['teacher'] && $value['single_week'] == $temp['single_week'] && $value['classroom'] == $temp['classroom']) {
+                    $number = count($temp['class']) - 1;
+                    if ($value['class']['0'] == ($temp['class'][$number] + 1)) {
+                        $class_result[$i]['class'] = array_merge($temp['class'], $value['class']);
+                        $status=1;
+                    }
+                }
+            }
+            if($status==0){
+                array_push($class_result,$value);
+            }
+        }
+        return $class_result;
     }
 }
