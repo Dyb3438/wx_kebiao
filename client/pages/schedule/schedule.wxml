@@ -2,16 +2,20 @@
 <view class='top'>
     <view class='top-left'></view>
     <view class='top-center'>
-        <text>第{{thisWeek}}周</text>
-        <text class="semester">{{semester}}</text>
+        <picker range="{{week}}" value="{{weekValue}}" bindchange="weekChange">
+            <view>第{{weekValue + 1}}周</view>
+            <view class="semester">{{semester}}</view>
+        </picker>
     </view>
-    <view class='top-right'>
-        <text class='plus'></text>
+    <view class='top-right' bind:tap="">
+        <navigator class="" url="/pages/jw/jw" open-type="navigate">
+            <text class='plus'></text>
+        </navigator>
     </view>
 </view>
 <view class='container'>
     <view class='date'>
-        <text class="date-month">{{month}}\n月</text>
+        <text class="date-month">{{month + 1}}\n月</text>
         <block wx:for='{{date}}' wx:key="day">
             <text class='date-day'>{{item.day}}\n{{item.date}}</text>
         </block>
@@ -24,8 +28,8 @@
         </view>
         <view class="schedule-class">
             <block wx:for="{{class}}">
-                <block wx:if="{{thisWeek >= item.long[0] && thisWeek <= item.long[1]}}">
-                    <view wx:if="{{item.single_week == 0 || item.single_week == 1 && (thisWeek % 2) == 1 || item.single_week == 2 && (thisWeek % 2) == 0}}" class="schedule-class-box" style="top: {{(item.class[0]-1) * 120}}rpx;left: {{(item.day-1) * 14.285714285714}}%; height: {{item.class.length*120}}rpx;">
+                <block wx:if="{{(weekValue + 1) >= item.long[0] && (weekValue + 1) <= item.long[1]}}">
+                    <view wx:if="{{item.single_week == 0 || item.single_week == 1 && ((weekValue + 1) % 2) == 1 || item.single_week == 2 && ((weekValue + 1) % 2) == 0}}" class="schedule-class-box" style="top: {{(item.class[0]-1) * 120}}rpx;left: {{(item.day-1) * 14.285714285714}}%; height: {{item.class.length*120}}rpx;">
                         <text class="schedule-class-content">{{item.classname}}<block wx:if="{{item.classroom != ''}}">\n@{{item.classroom}}</block></text>
                     </view>
                 </block>

@@ -1,0 +1,10 @@
+<!--pages/jw/jw.wxml-->
+<view>教务登陆</view>
+<form bindsubmit="logIn">
+    <input name="rnd" value="{{rnd}}" style="display: none;"></input>
+    <input name="xh" placeholder="学号" type="number" confirm-type="next"></input>
+    <input name="pw" placeholder="密码" password="true" confirm-type="next"></input>
+    <input name="txtSecretCode" placeholder="验证码" confirm-type="done"></input>
+    <image class="" src="{{codeImg}}" mode="scaleToFill"></image>
+    <button form-type="submit">登陆</button>
+</form>

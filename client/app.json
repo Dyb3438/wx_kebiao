@@ -1,11 +1,12 @@
 {
-  "pages": [
-    "pages/schedule/schedule"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "微信课表",
-    "navigationBarTextStyle": "black"
-  }
+    "pages": [
+        "pages/schedule/schedule",
+        "pages/jw/jw"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "课程表",
+        "navigationBarTextStyle": "black"
+    }
 }
