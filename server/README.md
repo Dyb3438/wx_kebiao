@@ -140,13 +140,13 @@
 #### 课表格式：
 
     {
-        “classname”=>”微积分1（二）”，
-        “day”=>”1”,
-        “class”=>”1,2,3”,
-        “long“=>”[1-16]”,
-        “teacher“=>”温旭辉”,
-        “classroom“=>”A2 302”,
-        “single_week”=>”1”
+        "classname"=>"微积分1（二）"，
+        "day"=>"1",
+        "class"=>"[1,2,3]",
+        "long"=>"[1,16]”,
+        "teacher"=>”温旭辉”,
+        "classroom"=>"A2 302",
+        "single_week"=>"1"
         (单周为1，双周2，不分0)
     }
 

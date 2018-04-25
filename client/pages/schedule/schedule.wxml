@@ -2,9 +2,6 @@
 <view class='top'>
     <view class='top-left'></view>
     <view class='top-center'>
-        <picker range="{{[1,2,3]}}" value="{{index}}">
-            <view>当前选择：{{index}}</view>
-        </picker>
         <text>第{{thisWeek}}周</text>
         <text class="semester">{{semester}}</text>
     </view>
