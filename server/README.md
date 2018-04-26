@@ -1,6 +1,71 @@
 # 微信小程序接口文档
 
-## 一、抓取课表
+##一、微信授权
+
+###1、授权接口
+
+<table>
+    <tr>
+        <td>请求地址：</td>
+        <td colspan="4">http://120.79.221.7/wx_kebiao/login</td>
+    </tr>
+    <tr>
+        <td>请求方式：</td>
+        <td colspan="4">GET</td>
+    </tr>
+    <tr>
+        <td>返回值类型：</td>
+        <td colspan="4">Json</td>
+    </tr>
+    <tr>
+            <td>请求参数</td>
+            <td>参数名</td>
+            <td>参数类型</td>
+            <td>是否必填</td>
+            <td>说明</td>
+        </tr>
+        <tr>
+            <td>code</td>
+            <td>code</td>
+            <td>String</td>
+            <td>Y</td>
+            <td></td>
+        </tr>
+    <tr>
+        <td>返回参数</td>
+        <td>参数名</td>
+        <td>参数类型</td>
+        <td>是否必填</td>
+        <td>说明</td>
+    </tr>
+    <tr>
+        <td>sessionid</td>
+        <td>sessionid</td>
+        <td>String</td>
+        <td>Y</td>
+        <td>储存在本地，用于以后请求作为header</td>
+    </tr>
+    <tr>
+        <td>个人信息</td>
+        <td>information</td>
+        <td>Array</td>
+        <td>Y</td>
+        <td>用于下次提交表单</td>
+    </tr>
+</table>
+
+#### 个人信息格式：
+
+    {
+        "xuehao"=>"201730293438",
+        "name"=>"xxx",
+        "classroom"=>"xxxxxxx班",
+        "major"=>"xxxxxxxx专业",
+        "school"=>"xxxx学院",
+        "college"=>"华南理工大学"
+    }
+
+## 二、抓取课表
 
 ### 1、验证码接口
 
