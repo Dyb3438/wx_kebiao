@@ -5,14 +5,16 @@ error_reporting(E_ALL^E_NOTICE^E_WARNING);
 session_start();
 
 require_once __DIR__ . "/../vendor/autoload.php";
+require_once __DIR__."/../config/wx.php";
 
 use dyb\data_restore;
 use dyb\curl;
 use dyb\kb_week;
+use dyb\entry;
 $data_restore=new data_restore();
 $curl=new curl();
 $week=new kb_week();
-
+$entry=new entry();
 //前端传来的数据
 $xh = $_POST['xh'];
 $pw=$_POST['pw'];
@@ -70,6 +72,9 @@ if (isset($xm[1][0])){
         preg_match_all("/行政班：(.+)<\/span>/u", $information[0][4], $xingzhengban);
         $xingzhengban = $xingzhengban[1][0];
         $information=array("xuehao"=>$xuehao,"xingming"=>$xingming,"xueyuan"=>$xueyuan,"zhuanye"=>$zhuanye,"xingzhengban"=>$xingzhengban);
+        session_start();
+        $openid=$_SESSION['openid'];
+        $result=$entry->entry_information($information,$openid);
     }
     if($do=="1"||$do=="2") {
         //爬取课表
@@ -127,8 +132,9 @@ if (isset($xm[1][0])){
             }
         }
         $class_list = $data_restore->combine_class($class_list);
+        $entry->entry_kebiao($class_list,$xh);
     }
-    echo json_encode(array("result"=>"1","kebiao"=>isset($class_list)?$class_list:"","information"=>isset($information)?$information:"","week"=>$week->get_week()));
+    echo json_encode(array("result"=>"1","kebiao"=>isset($class_list)?$class_list:"","information"=>isset($information)?$information:"","week"=>$week->get_week(),"msg"=>isset($result['msg'])?$result['msg']:""));
 }else{
     echo json_encode(array("result"=>"0","msg"=>$error[1][0]));
 }
