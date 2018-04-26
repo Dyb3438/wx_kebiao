@@ -22,25 +22,25 @@ class entry
         foreach ($class as $key =>$value){
             switch ($value['day']){
                 case "1":
-                    $insert_monday=$this->insert('monday')->cols(array('xh'=>$xh,'class'=>$value['class'],'classname'=>$value['classname'],'teacher'=>$value['teacher'],'classroom'=>$value['classroom'],'single_week'=>$value['single_week'],'weeklong'=>$value['long']))->query();
+                    $insert_monday=$this->connection->insert('monday')->cols(array('xh'=>$xh,'class'=>$value['class'],'classname'=>$value['classname'],'teacher'=>$value['teacher'],'classroom'=>$value['classroom'],'single_week'=>$value['single_week'],'weeklong'=>$value['long']))->query();
                     break;
                 case "2":
-                    $insert_tuesday=$this->insert('tuesday')->cols(array('xh'=>$xh,'class'=>$value['class'],'classname'=>$value['classname'],'teacher'=>$value['teacher'],'classroom'=>$value['classroom'],'single_week'=>$value['single_week'],'weeklong'=>$value['long']))->query();
+                    $insert_tuesday=$this->connection->insert('tuesday')->cols(array('xh'=>$xh,'class'=>$value['class'],'classname'=>$value['classname'],'teacher'=>$value['teacher'],'classroom'=>$value['classroom'],'single_week'=>$value['single_week'],'weeklong'=>$value['long']))->query();
                     break;
                 case "3":
-                    $insert_wednesday=$this->insert('wednesday')->cols(array('xh'=>$xh,'class'=>$value['class'],'classname'=>$value['classname'],'teacher'=>$value['teacher'],'classroom'=>$value['classroom'],'single_week'=>$value['single_week'],'weeklong'=>$value['long']))->query();
+                    $insert_wednesday=$this->connection->insert('wednesday')->cols(array('xh'=>$xh,'class'=>$value['class'],'classname'=>$value['classname'],'teacher'=>$value['teacher'],'classroom'=>$value['classroom'],'single_week'=>$value['single_week'],'weeklong'=>$value['long']))->query();
                     break;
                 case "4":
-                    $insert_thursday=$this->insert('thursday')->cols(array('xh'=>$xh,'class'=>$value['class'],'classname'=>$value['classname'],'teacher'=>$value['teacher'],'classroom'=>$value['classroom'],'single_week'=>$value['single_week'],'weeklong'=>$value['long']))->query();
+                    $insert_thursday=$this->connection->insert('thursday')->cols(array('xh'=>$xh,'class'=>$value['class'],'classname'=>$value['classname'],'teacher'=>$value['teacher'],'classroom'=>$value['classroom'],'single_week'=>$value['single_week'],'weeklong'=>$value['long']))->query();
                     break;
                 case "5":
-                    $insert_friday=$this->insert('friday')->cols(array('xh'=>$xh,'class'=>$value['class'],'classname'=>$value['classname'],'teacher'=>$value['teacher'],'classroom'=>$value['classroom'],'single_week'=>$value['single_week'],'weeklong'=>$value['long']))->query();
+                    $insert_friday=$this->connection->insert('friday')->cols(array('xh'=>$xh,'class'=>$value['class'],'classname'=>$value['classname'],'teacher'=>$value['teacher'],'classroom'=>$value['classroom'],'single_week'=>$value['single_week'],'weeklong'=>$value['long']))->query();
                     break;
                 case "6":
-                    $insert_saturday=$this->insert('saturday')->cols(array('xh'=>$xh,'class'=>$value['class'],'classname'=>$value['classname'],'teacher'=>$value['teacher'],'classroom'=>$value['classroom'],'single_week'=>$value['single_week'],'weeklong'=>$value['long']))->query();
+                    $insert_saturday=$this->connection->insert('saturday')->cols(array('xh'=>$xh,'class'=>$value['class'],'classname'=>$value['classname'],'teacher'=>$value['teacher'],'classroom'=>$value['classroom'],'single_week'=>$value['single_week'],'weeklong'=>$value['long']))->query();
                     break;
                 case "7":
-                    $insert_sunday=$this->insert('sunday')->cols(array('xh'=>$xh,'class'=>$value['class'],'classname'=>$value['classname'],'teacher'=>$value['teacher'],'classroom'=>$value['classroom'],'single_week'=>$value['single_week'],'weeklong'=>$value['long']))->query();
+                    $insert_sunday=$this->connection->insert('sunday')->cols(array('xh'=>$xh,'class'=>$value['class'],'classname'=>$value['classname'],'teacher'=>$value['teacher'],'classroom'=>$value['classroom'],'single_week'=>$value['single_week'],'weeklong'=>$value['long']))->query();
                     break;
             }
         }
