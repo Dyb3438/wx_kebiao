@@ -1,1 +1,69 @@
 /* pages/jw/jw.wxss */
+
+.form {
+    /*position: relative;*/
+    /*width: 100%;*/
+    display: flex;
+    flex-direction: column;
+    /*align-items: center;*/
+    /*justify-content: center;*/
+}
+
+.input-hidden {
+    display: none;
+}
+
+.input-area {
+    /*width: 90%;*/
+    /*height: 100rpx;*/
+    padding: 0 10%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16rpx;
+}
+
+.input-container {
+    padding: 0 10%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16rpx
+}
+
+.input {
+    width: 100%;
+    height: 80rpx;
+    border: 2rpx #aaa solid;
+    border-radius: 8rpx;
+    padding: 0 30rpx;
+    font-size: 32rpx;
+}
+
+.input-code {
+    width: 45%;
+    height: 80rpx;
+    border: 2rpx #aaa solid;
+    border-radius: 8rpx;
+    padding: 0 30rpx;
+    font-size: 32rpx;
+}
+
+.input-img {
+    width: 208rpx;
+    height: 80rpx
+}
+
+.input-button {
+    width: 100%;
+    /*height: 96rpx;*/
+    margin-top: 80rpx;
+    /*background-color: #64AA56;*/
+    /*border: 2rpx rgb(20,70,15) solid;*/
+    /*border-radius: 8rpx;*/
+    /*color: #fff;*/
+    /*font-size: 38rpx;*/
+    /*box-shadow: 0 10rpx 16rpx 0 rgba(20,70,15,.1);*/
+}
+
+.input-button-hover {
+    background-color: rgb(50,120,15);
+}

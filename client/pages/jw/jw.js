@@ -1,35 +1,21 @@
 // pages/jw/jw.js
+
+const app = getApp();
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+        do: 0
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        wx.request({
-            // 必需
-            url: 'http://120.79.221.7/wx_kebiao/captcha',
-            success: (res) => {
-                console.log(res);
-                var temp = {
-                    rnd: res.data.rnd,
-                    codeImg: res.data.picture
-                }
-                this.setData(temp);
-            },
-            fail: (res) => {
-                
-            },
-            complete: (res) => {
-                
-            }
-        })
+        this.changeCode();
     },
 
     /**
@@ -89,17 +75,58 @@ Page({
             method: "POST",
             data: e.detail.value,
             header: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/x-www-form-urlencoded',
+                "cookie": "PHPSESSID=" + wx.getStorageSync('sessionid')
             },
             success: (res) => {
                 console.log(res);
+                if (res.data.result == 1) {
+                    if (res.data.kebiao != "") {
+                        app.addClass(res.data.kebiao);
+                    }
+                    app.setWeek(parseInt(res.data.week));
+                }
             },
             fail: (res) => {
-                
+                console.log(res);
             },
             complete: (res) => {
-                
+
             }
         })
+    },
+
+    changeCode: function() {
+        wx.request({
+            // 必需
+            url: 'http://120.79.221.7/wx_kebiao/captcha',
+            header: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                "cookie": "PHPSESSID=" + wx.getStorageSync('sessionid')
+            },
+            success: (res) => {
+                console.log(res);
+                var temp = {
+                    rnd: res.data.rnd,
+                    codeImg: res.data.picture
+                }
+                this.setData(temp);
+            },
+            fail: (res) => {
+                console.log(res);
+            },
+            complete: (res) => {
+
+            }
+        })
+    },
+
+    dowhat: function(e) {
+        console.log(e.detail);
+        e.detail.value ? this.setData({
+            do: 2
+        }) : this.setData({
+            do: 0
+        });
     }
 })
