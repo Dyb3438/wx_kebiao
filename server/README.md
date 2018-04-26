@@ -112,7 +112,7 @@
         <td>result</td>
         <td>Integer</td>
         <td>Y</td>
-        <td>1为抓取成功;0为出错</td>
+        <td>1为进入教务网成功;<br>0为进入教务网失败</td>
     </tr>
     <tr>
         <td>课表内容</td>
@@ -139,8 +139,8 @@
         <td>出错原因</td>
         <td>msg</td>
         <td>String</td>
-        <td>N</td>
-        <td>当result为0时返回此参数，1时不存在</td>
+        <td>Y</td>
+        <td>当result为1时,此参数是绑定个人信息时出错的信息;没错返回""<br>当result为0时,此参数是进入教务网时密码、验证码错误</td>
     </tr>
 </table>
 

@@ -89,7 +89,7 @@ Page({
             method: "POST",
             data: e.detail.value,
             header: {
-                'Content-Type': 'application/json'
+             'Content-Type': 'application/x-www-form-urlencoded'
             },
             success: (res) => {
                 console.log(res);
