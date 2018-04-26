@@ -74,7 +74,11 @@ if (isset($xm[1][0])){
         $information=array("xuehao"=>$xuehao,"xingming"=>$xingming,"xueyuan"=>$xueyuan,"zhuanye"=>$zhuanye,"xingzhengban"=>$xingzhengban);
         session_start();
         $openid=$_SESSION['openid'];
-        $result=$entry->entry_information($information,$openid);
+        if($openid==null){
+            $result=array('msg'=>"请先微信授权，再绑定身份");
+        }else {
+            $result = $entry->entry_information($information, $openid);
+        }
     }
     if($do=="1"||$do=="2") {
         //爬取课表
