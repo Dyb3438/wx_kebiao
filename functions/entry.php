@@ -11,7 +11,7 @@ class entry
     function entry_kebiao($class,$xh){
         preg_match_all("/^\w{4}/",$xh,$year);
         $year=$year[0][0];
-        $this->connection==new Connection(DB_HOST, DB_PORT, DB_USER, DB_PW, "wx_".$year."kebiao");
+        $this->connection=new Connection(DB_HOST, DB_PORT, DB_USER, DB_PW, "wx_".$year."kebiao");
         $delete_monday=$this->connection->delete('monday')->where('xh=:xh')->bindValues(array("xh"=>$xh))->query();
         $delete_tuesday=$this->connection->delete('tuesday')->where('xh=:xh')->bindValues(array("xh"=>$xh))->query();
         $delete_wednesday=$this->connection->delete('wednesday')->where('xh=:xh')->bindValues(array("xh"=>$xh))->query();
