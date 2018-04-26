@@ -7,34 +7,44 @@
             <view class="semester">{{semester}}</view>
         </picker>
     </view>
-    <view class='top-right' bind:tap="">
-        <navigator class="" url="/pages/jw/jw" open-type="navigate">
+    <view class='top-right' bind:tap="menuToggle">
+        <!-- <navigator class="" url="/pages/jw/jw" open-type="navigate"> -->
             <text class='plus'></text>
-        </navigator>
+        <!-- </navigator> -->
     </view>
 </view>
 <view class='container'>
-    <view class='date'>
-        <text class="date-month">{{month + 1}}\n月</text>
-        <block wx:for='{{date}}' wx:key="day">
-            <text class='date-day'>{{item.day}}\n{{item.date}}</text>
-        </block>
-    </view>
-    <view class='schedule'>
-        <view class='schedule-time'>
-            <block wx:for="{{scheduleTime}}">
-                <text>{{index + 1}}\n{{item}}</text>
+    <view class="floor">
+        <view class='date'>
+            <text class="date-month">{{month + 1}}\n月</text>
+            <block wx:for='{{date}}' wx:key="day">
+                <text wx:if="{{item.date == today}}" class="date-day today">{{item.day}}\n{{item.date}}日</text>
+                <text wx:else class='date-day'>{{item.day}}\n{{item.date}}日</text>
             </block>
         </view>
-        <view class="schedule-class">
-            <block wx:for="{{class}}">
-                <block wx:if="{{(weekValue + 1) >= item.long[0] && (weekValue + 1) <= item.long[1]}}">
-                    <view wx:if="{{item.single_week == 0 || item.single_week == 1 && ((weekValue + 1) % 2) == 1 || item.single_week == 2 && ((weekValue + 1) % 2) == 0}}" class="schedule-class-box" style="top: {{(item.class[0]-1) * 120}}rpx;left: {{(item.day-1) * 14.285714285714}}%; height: {{item.class.length*120}}rpx;">
-                        <text class="schedule-class-content">{{item.classname}}<block wx:if="{{item.classroom != ''}}">\n@{{item.classroom}}</block></text>
-                    </view>
+        <view class='schedule'>
+            <view class='schedule-time'>
+                <block wx:for="{{scheduleTime}}">
+                    <text>{{index + 1}}\n{{item}}</text>
                 </block>
-            </block>
+            </view>
+            <view class="schedule-class">
+                <block wx:for="{{class}}">
+                    <block wx:if="{{(weekValue + 1) >= item.long[0] && (weekValue + 1) <= item.long[1]}}">
+                        <view wx:if="{{item.single_week == 0 || item.single_week == 1 && ((weekValue + 1) % 2) == 1 || item.single_week == 2 && ((weekValue + 1) % 2) == 0}}" class="schedule-class-box" style="top: {{(item.class[0]-1) * 120}}rpx;left: {{(item.day-1) * 14.285714285714}}%; height: {{item.class.length*120}}rpx;">
+                            <text class="schedule-class-content" style="background-color: {{item.color}};">{{item.classname}}<block wx:if="{{item.classroom != ''}}">\n@{{item.classroom}}</block>
+                            </text>
+                        </view>
+                    </block>
+                </block>
+            </view>
         </view>
+    </view>
+    <view class="floor" style="display: {{menu}};">
+        <view class="floor menu-background" bind:tap="menuToggle"></view>
+        <view class="menu-list" bind:tap="addClass">添加课程</view>
+        <picker range="{{week}}" value="{{thisWeek - 1}}" bindchange="changeWeek"><view class="menu-list"><text>当前周数 </text><text>第{{thisWeek}}周></text></view></picker>
+        <view class="menu-list">仅显示本周要上的课程 <switch></switch></view>
     </view>
 </view>
 <!-- <view class='bottom'></view> -->

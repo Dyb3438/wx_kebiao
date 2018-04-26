@@ -3,8 +3,10 @@
 .top {
     display: flex;
     width: 100%;
+    padding: 10rpx 0;
     justify-content: space-between;
     overflow: hidden;
+    color: rgb(100,170,55);
 }
 
 .top-center {
@@ -36,10 +38,12 @@
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
     width: 100%;
     flex-grow: 1;
+}
+
+.floor {
+    flex-direction: column;
 }
 
 .plus:before {
@@ -52,19 +56,26 @@
 
 .date {
     display: flex;
-    padding: 20rpx 0;
     font-size: 25rpx;
+    background-color: #FAFAFA;
+    color: rgb(20,70,15);
 }
 
 .date-month {
     width: 10%;
+    padding: 20rpx 0;
     text-align: center;
 }
 
 .date-day {
     flex-grow: 1;
     flex-shrink: 1;
+    padding: 20rpx 0;
     text-align: center;
+}
+
+.today {
+    background-color: rgb(200,240,180);
 }
 
 .schedule {
@@ -79,6 +90,8 @@
     width: 10%;
     font-size: 20rpx;
     text-align: center;
+    background-color: #FAFAFA;
+    color: rgb(20,70,15);
 }
 
 .schedule-time text {
@@ -100,13 +113,30 @@
 }
 
 .schedule-class-content {
-    width: calc(100% - 12rpx);
-    height: calc(100% - 12rpx);
+    width: calc(100% - 22rpx);
+    height: calc(100% - 22rpx);
     display: inline-block;
     border-radius: 10rpx;
     padding: 5rpx;
+    margin: 5rpx;
+    color: #fff;
     background-color: rgb(100,170,55);
+    box-shadow: -3rpx 3rpx 3rpx #40404080;
     overflow: hidden;
     /*word-break: break-all;*/
     word-wrap: break-word;
+}
+
+.menu-background {
+    background-color: #80808080;
+    /*z-index: -1;*/
+}
+
+.menu-list {
+    display: flex;
+    justify-content: space-between;
+    padding: 20rpx;
+    border: 1rpx soild #a0a0a0;
+    background-color: #fff;
+    z-index: 1;
 }
