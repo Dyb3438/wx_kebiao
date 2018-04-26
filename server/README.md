@@ -91,6 +91,13 @@
         <td></td>
     </tr>
     <tr>
+        <td>操作参数</td>
+        <td>do</td>
+        <td>Integer</td>
+        <td>Y</td>
+        <td>0: 绑定;1: 爬课表;2: 绑定且爬课表;</td>
+    </tr>
+    <tr>
         <td colspan="5">返回结果</td>
     </tr>
     <tr>
@@ -122,12 +129,12 @@
         <td>当result为1时返回此参数，0时不存在</td>
     </tr>
     <tr>
-            <td>周数</td>
-            <td>week</td>
-            <td>Integer</td>
-            <td>N</td>
-            <td>当result为1时返回此参数，0时不存在</td>
-        </tr>
+        <td>周数</td>
+        <td>week</td>
+        <td>Integer</td>
+        <td>N</td>
+        <td>当result为1时返回此参数，0时不存在</td>
+    </tr>
     <tr>
         <td>出错原因</td>
         <td>msg</td>
