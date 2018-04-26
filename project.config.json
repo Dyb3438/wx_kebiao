@@ -12,5 +12,6 @@
 	},
 	"appid": "wx3d8a680fe9393964",
 	"projectname": "%E5%BE%AE%E4%BF%A1%E8%AF%BE%E8%A1%A8",
+	"compileType": "miniprogram",
 	"condition": {}
 }

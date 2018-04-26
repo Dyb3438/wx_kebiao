@@ -1,6 +1,71 @@
 # 微信小程序接口文档
 
-## 一、抓取课表
+##一、微信授权
+
+###1、授权接口
+
+<table>
+    <tr>
+        <td>请求地址：</td>
+        <td colspan="4">http://120.79.221.7/wx_kebiao/login</td>
+    </tr>
+    <tr>
+        <td>请求方式：</td>
+        <td colspan="4">GET</td>
+    </tr>
+    <tr>
+        <td>返回值类型：</td>
+        <td colspan="4">Json</td>
+    </tr>
+    <tr>
+            <td>请求参数</td>
+            <td>参数名</td>
+            <td>参数类型</td>
+            <td>是否必填</td>
+            <td>说明</td>
+        </tr>
+        <tr>
+            <td>code</td>
+            <td>code</td>
+            <td>String</td>
+            <td>Y</td>
+            <td></td>
+        </tr>
+    <tr>
+        <td>返回参数</td>
+        <td>参数名</td>
+        <td>参数类型</td>
+        <td>是否必填</td>
+        <td>说明</td>
+    </tr>
+    <tr>
+        <td>sessionid</td>
+        <td>sessionid</td>
+        <td>String</td>
+        <td>Y</td>
+        <td>储存在本地，用于以后请求作为header</td>
+    </tr>
+    <tr>
+        <td>个人信息</td>
+        <td>information</td>
+        <td>Array</td>
+        <td>Y</td>
+        <td>用于下次提交表单</td>
+    </tr>
+</table>
+
+#### 个人信息格式：
+
+    {
+        "xuehao"=>"201730293438",
+        "name"=>"xxx",
+        "classroom"=>"xxxxxxx班",
+        "major"=>"xxxxxxxx专业",
+        "school"=>"xxxx学院",
+        "college"=>"华南理工大学"
+    }
+
+## 二、抓取课表
 
 ### 1、验证码接口
 
@@ -112,7 +177,7 @@
         <td>result</td>
         <td>Integer</td>
         <td>Y</td>
-        <td>1为抓取成功;0为出错</td>
+        <td>1为进入教务网成功;<br>0为进入教务网失败</td>
     </tr>
     <tr>
         <td>课表内容</td>
@@ -139,21 +204,21 @@
         <td>出错原因</td>
         <td>msg</td>
         <td>String</td>
-        <td>N</td>
-        <td>当result为0时返回此参数，1时不存在</td>
+        <td>Y</td>
+        <td>当result为1时,此参数是绑定个人信息时出错的信息;没错返回""<br>当result为0时,此参数是进入教务网时密码、验证码错误</td>
     </tr>
 </table>
 
 #### 课表格式：
 
     {
-        “classname”=>”微积分1（二）”，
-        “day”=>”1”,
-        “class”=>”1,2,3”,
-        “long“=>”[1-16]”,
-        “teacher“=>”温旭辉”,
-        “classroom“=>”A2 302”,
-        “single_week”=>”1”
+        "classname"=>"微积分1（二）"，
+        "day"=>"1",
+        "class"=>"[1,2,3]",
+        "long"=>"[1,16]”,
+        "teacher"=>”温旭辉”,
+        "classroom"=>"A2 302",
+        "single_week"=>"1"
         (单周为1，双周2，不分0)
     }
 
