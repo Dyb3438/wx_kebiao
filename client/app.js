@@ -17,6 +17,7 @@ App({
                             'Content-Type': 'application/x-www-form-urlencoded'
                         },
                         success: (res) => {
+                            console.log(res)
                             wx.setStorage({
                                 key: 'sessionid',
                                 data: res.data.sessionid,

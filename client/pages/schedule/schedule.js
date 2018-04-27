@@ -8,6 +8,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        onlyThisWeek: wx.getStorageSync('onlyThisWeek'),
         menu: "none",
         thisWeek: 1,
         semester: "大一 第2学期",
@@ -165,10 +166,33 @@ Page({
                     wx.navigateTo({
                         url: '/pages/jw/jw'
                     })
+                } else if (res.tapIndex ==1) {
+                    wx.navigateTo({
+                        url: '/pages/addClass/addClass'
+                    })
                 }
             },
             fail: function(res) {
                 console.log(res);
+            }
+        })
+    },
+
+    seeClass: function(e) {
+        this.setData({
+            onlyThisWeek: e.detail.value
+        })
+        wx.setStorage({
+            key: 'onlyThisWeek',
+            data: e.detail.value,
+            success: function(res) {
+                
+            },
+            fail: function(res) {
+                
+            },
+            complete: function(res) {
+                
             }
         })
     }

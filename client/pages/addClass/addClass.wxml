@@ -1,2 +1,7 @@
 <!--pages/addClass/addClass.wxml-->
-<text>pages/addClass/addClass.wxml</text>
+<view>课名 <input placeholder="未填写"></input></view>
+<view>教室 <input placeholder="未填写"></input></view>
+<view>周数 <input placeholder="未填写"></input></view>
+<view>节数 <input placeholder="未填写"></input></view>
+<view>老师 <input placeholder="未填写"></input></view>
+<button>保存</button>

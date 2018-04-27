@@ -75,6 +75,7 @@
 }
 
 .today {
+    font-weight: bold;
     background-color: rgb(200,240,180);
 }
 
@@ -96,15 +97,16 @@
 
 .schedule-time text {
     width: 100%;
-    height: 120rpx;
+    height: 100rpx;
     display: block;
+    padding-top: 20rpx;
 }
 
 .schedule-class {
     position: relative;
     width: 0;
     flex-grow: 1;
-    font-size: 24rpx;
+    font-size: 21rpx;
 }
 
 .schedule-class-box {
@@ -120,11 +122,16 @@
     padding: 5rpx;
     margin: 5rpx;
     color: #fff;
-    background-color: rgb(100,170,55);
+    /*background-color: rgb(100,170,55);*/
     box-shadow: -3rpx 3rpx 3rpx #40404080;
     overflow: hidden;
     /*word-break: break-all;*/
     word-wrap: break-word;
+}
+
+.not-this-week {
+    color: #9BABBD;
+    background-color: #EBEFF5;
 }
 
 .menu-background {
