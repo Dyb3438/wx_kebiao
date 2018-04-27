@@ -1,7 +1,8 @@
 {
     "pages": [
         "pages/schedule/schedule",
-        "pages/jw/jw"
+        "pages/jw/jw",
+        "pages/addClass/addClass"
     ],
     "window": {
         "backgroundTextStyle": "light",
