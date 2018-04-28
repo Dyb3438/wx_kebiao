@@ -138,12 +138,3 @@
     background-color: #80808080;
     /*z-index: -1;*/
 }
-
-.menu-list {
-    display: flex;
-    justify-content: space-between;
-    padding: 20rpx;
-    border: 1rpx soild #a0a0a0;
-    background-color: #fff;
-    z-index: 1;
-}

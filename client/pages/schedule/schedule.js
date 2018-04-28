@@ -5,17 +5,16 @@ const app = getApp();
 Page({
 
     /**
-     * 页面的初始数据
+     * 页面的初始数据 
      */
     data: {
-        onlyThisWeek: wx.getStorageSync('onlyThisWeek'),
         menu: "none",
         thisWeek: 1,
         semester: "大一 第2学期",
         thisMonth: 0,
         month: 0,
         today: 0,
-        week: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
+        week: app.globalData.week,
         weekValue: 0,
         date: [{
             "date": 0,
@@ -39,8 +38,6 @@ Page({
             "date": 0,
             "day": "周日"
         }, ],
-        scheduleTime: ["00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00"],
-        class: wx.getStorageSync("class")
     },
 
     /**
@@ -62,7 +59,11 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-
+        this.setData({
+            onlyThisWeek: wx.getStorageSync('onlyThisWeek'),
+            scheduleTime: wx.getStorageSync('classTime') || ["00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00"],
+            class: app.globalData.class
+        })
     },
 
     /**
@@ -162,13 +163,13 @@ Page({
             itemList: ["教务系统导入", "手动添加课程"],
             success: function(res) {
                 console.log(res);
-                if (res.tapIndex ==0) {
+                if (res.tapIndex == 0) {
                     wx.navigateTo({
                         url: '/pages/jw/jw'
                     })
-                } else if (res.tapIndex ==1) {
+                } else if (res.tapIndex == 1) {
                     wx.navigateTo({
-                        url: '/pages/addClass/addClass'
+                        url: '/pages/schedule/addClass'
                     })
                 }
             },
@@ -186,13 +187,13 @@ Page({
             key: 'onlyThisWeek',
             data: e.detail.value,
             success: function(res) {
-                
+
             },
             fail: function(res) {
-                
+
             },
             complete: function(res) {
-                
+
             }
         })
     }
@@ -204,16 +205,11 @@ function initTime(page) {
     var temp = {
             today: today.getDate(),
             thisWeek: setWeekTime.week + (Math.floor((today.getTime() - 316800000) / 604800000) - setWeekTime.timeWeek),
-            // weekValue: temp.thisWeek - 1,
             thisMonth: today.getMonth(),
             month: today.getMonth(),
         },
         firstDay = today.getDate() - today.getDay() + 1;
-    // temp.today = today.getDate();
-    // temp.thisWeek = setWeekTime.week + (Math.floor((today.getTime() - 316800000) / 604800000) - setWeekTime.timeWeek);
     temp.weekValue = temp.thisWeek - 1;
-    // temp.thisMonth = today.getMonth();
-    // temp.month = today.getMonth();
     if (firstDay < 1) {
         if (today.getMonth() == 0) {
             firstDay = app.globalData.month[11] - firstDay;

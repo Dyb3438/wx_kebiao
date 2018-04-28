@@ -50,10 +50,11 @@
     <view class="floor" style="display: {{menu}};">
         <view class="floor menu-background" bind:tap="menuToggle"></view>
         <view class="menu-list" bind:tap="addClass">添加课程</view>
+        <navigator class="menu-list" url="/pages/setClassTime/menu" open-type="navigate">设置节数与时间</navigator>
         <picker range="{{week}}" value="{{thisWeek - 1}}" bindchange="changeWeek">
             <view class="menu-list">
                 <text>当前周数 </text>
-                <text>第{{thisWeek}}周></text>
+                <text class="preview">第{{thisWeek}}周></text>
             </view>
         </picker>
         <view class="menu-list">仅显示本周要上的课程

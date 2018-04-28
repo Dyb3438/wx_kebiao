@@ -1,13 +1,31 @@
 {
     "pages": [
         "pages/schedule/schedule",
+        "pages/index/index",
         "pages/jw/jw",
-        "pages/addClass/addClass"
+        "pages/schedule/addClass",
+        "pages/setClassTime/menu",
+        "pages/setClassTime/set"
     ],
     "window": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#fff",
         "navigationBarTitleText": "课程表",
         "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "color": "rgb(120,150,120)",
+        "selectedColor": "rgb(50,120,15)",
+        "backgroundColor": "#fff",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "个人信息"
+            },
+            {
+                "pagePath": "pages/schedule/schedule",
+                "text": "课程表"
+            }
+        ]
     }
 }
