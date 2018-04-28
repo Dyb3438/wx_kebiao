@@ -7,3 +7,4 @@
         </view>
     </picker>
 </block>
+<text class="input-area input-area-self input-button" bind:tap="save">保存</text>

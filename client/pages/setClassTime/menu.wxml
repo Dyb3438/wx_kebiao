@@ -1,8 +1,0 @@
-<!--pages/setClassTime/menu.wxml-->
-<picker range="{{[5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,14,22,23,24]}}" value="{{classNum - 5}}" bindchange="changeNum">
-    <view class="menu-list">
-        <text>设置课表最大节数 </text>
-        <text class="preview">{{classNum}}节></text>
-    </view>
-</picker>
-<navigator class="menu-list" url="/pages/setClassTime/set" open-type="navigate">设置上课时间</navigator>

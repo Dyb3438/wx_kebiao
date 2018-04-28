@@ -15,7 +15,9 @@
 </view>
 <view class="input-area">
     <text class="input-name">节数</text>
-    <input class="input" placeholder="未填写"></input>
+    <picker class="input" mode="multiSelector" range="{{[weekDay, startClass, endClass]}}" value="{{[day, classTime[0], classTime[1]]}}" bindchange="setClassTime">
+        {{weekDay[day]}} <block wx:if="{{classTime[0] == classTime[1]}}">第{{classTime[0]+1}}节</block><block wx:else>{{classTime[0]+1}}~{{classTime[1]+1}}节</block>
+    </picker>
 </view>
 <view class="input-area">
     <text class="input-name">老师</text>

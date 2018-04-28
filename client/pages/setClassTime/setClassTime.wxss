@@ -1,0 +1,7 @@
+/* pages/setClassTime/set.wxss */
+
+page {
+    display: block;
+    background-color: #EEE;
+    overflow-y: auto;
+}

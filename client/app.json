@@ -4,8 +4,7 @@
         "pages/index/index",
         "pages/jw/jw",
         "pages/schedule/addClass",
-        "pages/setClassTime/menu",
-        "pages/setClassTime/set"
+        "pages/setClassTime/setClassTime"
     ],
     "window": {
         "backgroundTextStyle": "light",

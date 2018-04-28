@@ -16,6 +16,7 @@ Page({
         today: 0,
         week: app.globalData.week,
         weekValue: 0,
+        classNum: wx.getStorageSync('classNum') || 12,
         date: [{
             "date": 0,
             "day": "周一"
@@ -196,6 +197,46 @@ Page({
 
             }
         })
+    },
+
+    changeNum: function(e) {
+        var num = parseInt(e.detail.value) + 5;
+        wx.setStorage({
+            key: 'classNum',
+            data: num,
+            success: function(res) {
+
+            },
+            fail: function(res) {
+
+            },
+            complete: function(res) {
+
+            }
+        })
+
+        var classTime = wx.getStorageSync('classTime') || ["00:00"],
+            temp = [];
+        for (var i = 0; i <= num - 1; i++) {
+            temp[i] = classTime[i] || "00:00";
+        }
+        wx.setStorage({
+            key: 'classTime',
+            data: temp,
+            success: function(res) {
+
+            },
+            fail: function(res) {
+
+            },
+            complete: function(res) {
+
+            }
+        })
+        this.setData({
+            classNum: num,
+            scheduleTime: temp
+        })
     }
 })
 
@@ -208,7 +249,7 @@ function initTime(page) {
             thisMonth: today.getMonth(),
             month: today.getMonth(),
         },
-        firstDay = today.getDate() - today.getDay() + 1;
+        firstDay = today.getDate() - (today.getDay() == 0 ? 7 : today.getDay()) + 1;
     temp.weekValue = temp.thisWeek - 1;
     if (firstDay < 1) {
         if (today.getMonth() == 0) {
