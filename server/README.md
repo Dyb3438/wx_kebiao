@@ -231,3 +231,42 @@
         "zhuanye"=>"xxxxxxxx专业",
         "xingzhengban"=>"xxxx班"
     }
+    
+###3、取消学号绑定接口
+
+<table>
+    <tr>
+        <td>请求地址：</td>
+        <td colspan="4">http://120.79.221.7/wx_kebiao/unbind</td>
+    </tr>
+    <tr>
+        <td>请求方式：</td>
+        <td colspan="4">GET</td>
+    </tr>
+    <tr>
+        <td>返回值类型：</td>
+        <td colspan="4">Json</td>
+    </tr>
+    <tr>
+        <td>返回参数</td>
+        <td>参数名</td>
+        <td>参数类型</td>
+        <td>是否必填</td>
+        <td>说明</td>
+    </tr>
+    <tr>
+        <td>结果</td>
+        <td>result</td>
+        <td>Integer</td>
+        <td>Y</td>
+        <td>1成功；0失败</td>
+    </tr>
+    <tr>
+        <td>错误信息</td>
+        <td>msg</td>
+        <td>String</td>
+        <td>N</td>
+        <td>当result为0时返回：请先绑定</td>
+    </tr>
+</table>
+
