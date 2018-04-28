@@ -1,4 +1,4 @@
-// pages/addClass/addClass.js
+// pages/index/index.js
 Page({
 
   /**

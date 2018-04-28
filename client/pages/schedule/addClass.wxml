@@ -1,0 +1,24 @@
+<!--pages/addClass/addClass.wxml-->
+<view class="input-area input-area-self">
+    <text class="input-name">课名</text>
+    <input class="input" placeholder="未填写"></input>
+</view>
+<view class="input-area">
+    <text class="input-name">教室</text>
+    <input class="input" placeholder="未填写"></input>
+</view>
+<view class="input-area">
+    <text class="input-name">周数</text>
+    <picker class="input" mode="multiSelector" range="{{[week, week]}}" value="{{[startWeek-1, endWeek-1]}}" bindchange="setWeek">
+        {{startWeek}}-{{endWeek}}周
+    </picker>
+</view>
+<view class="input-area">
+    <text class="input-name">节数</text>
+    <input class="input" placeholder="未填写"></input>
+</view>
+<view class="input-area">
+    <text class="input-name">老师</text>
+    <input class="input" placeholder="未填写"></input>
+</view>
+<text class="input-area input-area-self input-button">保存</text>

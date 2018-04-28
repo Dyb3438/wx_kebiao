@@ -1,0 +1,9 @@
+<!--pages/setClassTime/set.wxml-->
+<block wx:for="{{temp}}" wx:key="index">
+    <picker bindchange="setTime" mode="time" value="{{item}}" data-index="{{index}}">
+        <view class="menu-list">
+            <text>第{{index+1}}节 </text>
+            <text class="preview">{{item}}</text>
+        </view>
+    </picker>
+</block>

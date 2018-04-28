@@ -1,0 +1,5 @@
+/* pages/addClass/addClass.wxss */
+
+page {
+    background-color: #EEE;
+}

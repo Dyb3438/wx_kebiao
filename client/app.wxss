@@ -24,3 +24,52 @@ view {
     display: -ms-flexbox;
     display: flex;
 }
+
+.menu-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20rpx;
+    border-width: 0;
+    border-bottom-width: 1rpx;
+    border-style: solid;
+    border-color: #80808080;
+    background-color: #fff;
+    z-index: 1;
+}
+
+.preview {
+    height: 100%;
+    color: #A0A0A0;
+    font-size: 32rpx;
+}
+
+.input {
+    /*width: 0;*/
+    flex-grow: 1;
+}
+
+.input-area {
+    /*width: 100%;*/
+    display: flex;
+    padding: 20rpx;
+    border-width: 0;
+    border-bottom-width: 1rpx;
+    border-style: solid;
+    border-color: #80808080;
+    /*margin: 20rpx 0;*/
+    background-color: #fff;
+}
+
+.input-area-self {
+    margin: 20rpx 0;
+}
+
+.input-name {
+    margin-right: 30rpx;
+}
+
+.input-button {
+    justify-content: center;
+    color: rgb(50,120,15);
+}
