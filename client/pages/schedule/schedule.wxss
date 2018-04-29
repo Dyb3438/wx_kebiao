@@ -138,3 +138,7 @@
     background-color: #80808080;
     /*z-index: -1;*/
 }
+
+.menu-list-background {
+    background-color: #fff;
+}

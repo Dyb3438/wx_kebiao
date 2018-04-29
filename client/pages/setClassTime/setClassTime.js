@@ -5,14 +5,16 @@ Page({
      * 页面的初始数据
      */
     data: {
-        temp: wx.getStorageSync('classTime') || ["00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00"],
+
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-
+        this.setData({
+            temp: wx.getStorageSync('classTime') || ["00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00"],
+        })
     },
 
     /**
@@ -70,5 +72,24 @@ Page({
             temp = {};
         temp[name] = e.detail.value;
         this.setData(temp);
+    },
+
+    save: function() {
+        wx.setStorage({
+            key: 'classTime',
+            data: this.data.temp,
+            success: function(res) {
+
+            },
+            fail: function(res) {
+
+            },
+            complete: function(res) {
+
+            }
+        })
+        wx.navigateBack({
+            delta: 1
+        })
     }
 })
