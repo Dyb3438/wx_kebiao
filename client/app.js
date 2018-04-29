@@ -13,7 +13,7 @@ App({
                         // 必需
                         url: 'http://120.79.221.7/wx_kebiao/login',
                         data: {
-                            code:res.code
+                            code: res.code
                         },
                         header: {
                             'Content-Type': 'application/x-www-form-urlencoded'
@@ -27,33 +27,34 @@ App({
                                     console.log(res);
                                 },
                                 fail: function(res) {
-                                    
+
                                 },
                                 complete: function(res) {
-                                    
+
                                 }
                             })
                         },
                         fail: (res) => {
-                            
+
                         },
                         complete: (res) => {
-                            
+
                         }
                     })
                 }
             },
             fail: (res) => {
-                
+
             },
             complete: (res) => {
-                
+
             }
         })
         var today = new Date();
         if (today.getFullYear() % 4 == 0) {
             this.globalData.month[1] = 29;
         }
+        console.log(typeof this.globalData.class)
     },
     setWeek: function(thisWeek) {
         var today = new Date(),
@@ -70,60 +71,58 @@ App({
         return temp;
     },
     addClass: function(newClass) {
-        if (typeof newClass == "Object") {
-            newClass.color = this.globalData.colors[Math.round(11 * Math.random())];
-            if (wx.getStorageSync("class")) {
-                var oldClass = wx.getStorageSync("class"),
-                    repeat = 0;
-                for (var i = oldClass.length - 1; i >= 0; i--) {
-                    if (newClass.day == oldClass[i].day) {
-                        if (oldClass[i].long[0] < newClass.long[0] && oldClass[i].long[1] > newClass.long[0] || oldClass[i].long[0] < newClass.long[1] && oldClass[i].long[1] > newClass.long[1]) {
-                            if (oldClass[i].single_week == newClass.single_week || newClass.single_week == 0 || oldClass[i].single_week == 0) {
-                                for (var i = newClass.class.length - 1; i >= 0; i--) {
-                                    if (oldClass[i].class.indexOf(newClass.class[i]) != -1) {
-                                        repeat++;
-                                    }
+        newClass.color = this.globalData.colors[Math.round(11 * Math.random())];
+        if (typeof this.globalData.class == "object") {
+            var oldClass = this.globalData.class,
+                repeat = 0;
+            for (var i = oldClass.length - 1; i >= 0; i--) {
+                if (newClass.day == oldClass[i].day) {
+                    console.log("day");
+                    if (!(oldClass[i].long[0] > newClass.long[1] || oldClass[i].long[1] < newClass.long[0])) {
+                        console.log("long");
+                        if (oldClass[i].single_week == newClass.single_week || newClass.single_week == 0 || oldClass[i].single_week == 0) {
+                            console.log("single_week");
+                            for (var j = newClass.class.length - 1; j >= 0; j--) {
+                                if (oldClass[i].class.indexOf(newClass.class[j]) != -1) {
+                                    console.log("class");
+                                    repeat++;
                                 }
                             }
                         }
                     }
                 }
-            } else {
-                wx.setStorage({
-                    key: 'class',
-                    data: [newClass]
-                });
-                return;
-            }
-            if (repeat != 0) {
-                oldClass.push(newClass);
-                wx.setStorage({
-                    key: 'class',
-                    data: oldClass
-                });
-            } else {
-                wx.showModal({
-                    title: "警告",
-                    content: "检测到同时间段有课，是否继续添加？",
-                    success: function(res) {
-                        if (res.confirm) {
-                            oldClass.push(newClass);
-                            wx.setStorage({
-                                key: 'class',
-                                data: oldClass
-                            });
-                        }
-                    }
-                })
             }
         } else {
-            for (var i = newClass.length - 1; i >= 0; i--) {
-                newClass[i].color =  this.globalData.colors[Math.round(11 * Math.random())];
-            }
             wx.setStorage({
                 key: 'class',
-                data: newClass
+                data: [newClass]
             });
+            wx.navigateBack();
+            return;
+        }
+        console.log(repeat);
+        if (repeat == 0) {
+            oldClass.push(newClass);
+            wx.setStorage({
+                key: 'class',
+                data: oldClass
+            });
+            wx.navigateBack();
+        } else {
+            wx.showModal({
+                title: "警告",
+                content: "检测到同时间段有课，是否继续添加？",
+                success: function(res) {
+                    if (res.confirm) {
+                        oldClass.push(newClass);
+                        wx.setStorage({
+                            key: 'class',
+                            data: oldClass
+                        });
+                        wx.navigateBack();
+                    }
+                }
+            })
         }
     }
 })

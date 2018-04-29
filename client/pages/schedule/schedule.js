@@ -237,6 +237,14 @@ Page({
             classNum: num,
             scheduleTime: temp
         })
+    },
+
+    seeDetail: function(e) {
+        // console.log(e);
+        console.log(e.currentTarget.dataset.index);
+        wx.navigateTo({
+            url: '/pages/schedule/addClass?detail=' + e.currentTarget.dataset.index
+        })
     }
 })
 

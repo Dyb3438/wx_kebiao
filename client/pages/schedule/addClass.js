@@ -14,12 +14,14 @@ Page({
         endWeek: 25,
         day: 0,
         classTime: [0, 0],
+        single_week: "0",
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+        console.log(options);
         var classNum = wx.getStorageSync('classNum') || 12,
             temp = {
                 startClass: [],
@@ -28,6 +30,19 @@ Page({
         for (var i = 0; i < classNum; i++) {
             temp.startClass.push(i + 1);
             temp.endClass.push("到" + (i + 1));
+        }
+        if (options.detail) {
+            var classMsg = app.globalData.class[parseInt(options.detail)];
+            temp.classname = classMsg.classname;
+            temp.day = parseInt(classMsg.day) - 1;
+            temp.classTime = [parseInt(classMsg.class[0]) - 1, parseInt(classMsg.class[classMsg.class.length - 1]) - 1];
+            temp.startWeek = parseInt(classMsg.long[0]);
+            temp.endWeek = parseInt(classMsg.long[1]);
+            temp.teacher = classMsg.teacher;
+            temp.classroom = classMsg.classroom;
+            temp.single_week = classMsg.single_week;
+            temp.color = classMsg.color;
+            temp.detail = options.detail;
         }
         this.setData(temp);
     },
@@ -81,6 +96,23 @@ Page({
 
     },
 
+    initData: function() {
+        var temp = {
+            classname: this.data.classname || "",
+            day: this.data.day + 1,
+            class: [],
+            long: [this.data.startWeek, this.data.endWeek],
+            teacher: this.data.teacher || "",
+            classroom: this.data.classroom || "",
+            single_week: this.data.single_week || "0",
+            color: this.data.color || undefined
+        };
+        for (var i = this.data.classTime[0]; i <= this.data.classTime[1]; i++) {
+            temp.class.push(i + 1 + "");
+        }
+        return temp;
+    },
+
     setWeek: function(e) {
         var temp = {
             startWeek: parseInt(e.detail.value[0]) + 1,
@@ -101,5 +133,77 @@ Page({
             temp.classTime[1] = temp.classTime[0];
         }
         this.setData(temp);
+    },
+
+    dataChange: function(e) {
+        var temp = {},
+            name = e.target.dataset.name;
+        temp[name] = e.detail.value;
+        this.setData(temp);
+    },
+
+    save: function(e) {
+        var temp = this.initData();
+        // console.log(temp);
+        app.addClass(temp);
+        // console.log(typeof temp);
+        // wx.navigateBack();
+    },
+
+    change: function() {
+        var temp = this.initData();
+        app.globalData.class[this.data.detail] = temp;
+        wx.setStorage({
+            key: 'class',
+            data: app.globalData.class,
+            success: function(res) {
+
+            },
+            fail: function(res) {
+
+            },
+            complete: function(res) {
+
+            }
+        })
+        wx.navigateBack();
+    },
+
+    del: function() {
+        wx.showModal({
+            title: '',
+            content: '确定要删除吗？',
+            showCancel: true,
+            cancelText: '取消',
+            cancelColor: '#000000',
+            confirmText: '确定',
+            confirmColor: '#3CC51F',
+            success: (res) => {
+                // res.confirm 为 true 时，表示用户点击了确定按钮
+                if (res.confirm) {
+                    app.globalData.class.splice(this.data.detail, 1);
+                    wx.setStorage({
+                        key: 'class',
+                        data: app.globalData.class,
+                        success: function(res) {
+
+                        },
+                        fail: function(res) {
+
+                        },
+                        complete: function(res) {
+
+                        }
+                    })
+                    wx.navigateBack();
+                }
+            },
+            fail: (res) => {
+
+            },
+            complete: (res) => {
+
+            }
+        })
     }
 })

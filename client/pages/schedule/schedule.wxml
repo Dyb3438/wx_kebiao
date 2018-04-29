@@ -31,7 +31,7 @@
             <view class="schedule-class">
                 <block wx:for="{{class}}" wx:key="index">
                     <block wx:if="{{(weekValue + 1) >= item.long[0] && (weekValue + 1) <= item.long[1]}}">
-                        <view wx:if="{{item.single_week == 0 || item.single_week == 1 && ((weekValue + 1) % 2) == 1 || item.single_week == 2 && ((weekValue + 1) % 2) == 0}}" class="schedule-class-box" style="top: {{(item.class[0]-1) * 120}}rpx;left: {{(item.day-1) * 14.285714285714}}%; height: {{item.class.length*120}}rpx;">
+                        <view wx:if="{{item.single_week == 0 || item.single_week == 1 && ((weekValue + 1) % 2) == 1 || item.single_week == 2 && ((weekValue + 1) % 2) == 0}}" class="schedule-class-box" style="top: {{(item.class[0]-1) * 120}}rpx;left: {{(item.day-1) * 14.285714285714}}%; height: {{item.class.length*120}}rpx;" data-index="{{index}}" bind:tap="seeDetail">
                             <text class="schedule-class-content" style="background-color: {{item.color}};">{{item.classname}}
                                 <block wx:if="{{item.classroom != ''}}">@{{item.classroom}}</block>
                             </text>
@@ -42,7 +42,7 @@
                             </text>
                         </view>
                     </block>
-                    <view wx:elif="{{!onlyThisWeek}}" class="schedule-class-box" style="top: {{(item.class[0]-1) * 120}}rpx;left: {{(item.day-1) * 14.285714285714}}%; height: {{item.class.length*120}}rpx;">
+                    <view wx:elif="{{!onlyThisWeek}}" class="schedule-class-box" style="top: {{(item.class[0]-1) * 120}}rpx;left: {{(item.day-1) * 14.285714285714}}%; height: {{item.class.length*120}}rpx;" data-index="{{index}}" bind:tap="seeDetail">
                         <text class="schedule-class-content not-this-week">[非本周] {{item.classname}}
                             <block wx:if="{{item.classroom != ''}}">@{{item.classroom}}</block>
                         </text>

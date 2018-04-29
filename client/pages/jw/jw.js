@@ -82,7 +82,16 @@ Page({
                 console.log(res);
                 if (res.data.result == 1) {
                     if (res.data.kebiao != "") {
-                        app.addClass(res.data.kebiao);
+                        // app.addClass(res.data.kebiao);
+                        var newClass = res.data.kebiao;
+                        for (var i = newClass.length - 1; i >= 0; i--) {
+                            newClass[i].color = app.globalData.colors[Math.round(11 * Math.random())];
+                        }
+                        wx.setStorage({
+                            key: 'class',
+                            data: newClass
+                        });
+                        app.globalData.class = newClass;
                     }
                     app.setWeek(parseInt(res.data.week));
                 }
