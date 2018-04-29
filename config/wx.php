@@ -7,3 +7,6 @@ define("DB_HOST","localhost");
 define("DB_PORT","3306");
 define("DB_USER","root");
 define("DB_PW","");
+
+
+http://apiv2.100steps.net/emptyrooms?date=2018-04-30

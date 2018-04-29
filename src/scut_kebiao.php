@@ -5,7 +5,6 @@ error_reporting(E_ALL^E_NOTICE^E_WARNING);
 session_start();
 
 require_once __DIR__ . "/../vendor/autoload.php";
-require_once __DIR__."/../config/wx.php";
 
 use dyb\data_restore;
 use dyb\curl;
@@ -136,7 +135,7 @@ if (isset($xm[1][0])){
             }
         }
         $class_list = $data_restore->combine_class($class_list);
-        $entry->entry_kebiao($class_list,$xh);
+        $entry->entry_kebiao($class_list,$xh,"华南理工大学","");
     }
     echo json_encode(array("result"=>"1","kebiao"=>isset($class_list)?$class_list:"","information"=>isset($information)?$information:"","week"=>$week->get_week(),"msg"=>isset($result['msg'])?$result['msg']:""));
 }else{

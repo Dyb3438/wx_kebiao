@@ -1,5 +1,6 @@
 RewriteEngine On
 RewriteRule ^captcha$  src/captcha.php [QSA,L]
-RewriteRule ^kebiao/loading$  src/kebiao.php [QSA,L]
+RewriteRule ^kebiao/loading$  src/scut_kebiao.php [QSA,L]
+RewriteRule ^kebiao/manualmodify$  src/manual_kebiao.php [QSA,L]
 RewriteRule ^login$  src/login.php [QSA,L]
 RewriteRule ^kebiao/unbind$  src/unbind.php [QSA,L]

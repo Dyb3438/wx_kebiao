@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 2018-04-24 13:14:12
+-- Generation Time: 2018-04-29 17:30:49
 -- 服务器版本： 5.7.19
 -- PHP Version: 7.1.9
 
@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS `monday` (
   `classroom` varchar(25) COLLATE utf8_bin NOT NULL,
   `single_week` int(11) NOT NULL,
   `weeklong` varchar(25) COLLATE utf8_bin NOT NULL,
+  `school` varchar(25) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 COMMIT;
