@@ -232,7 +232,62 @@
         "xingzhengban"=>"xxxx班"
     }
     
-###3、取消学号绑定接口
+###3、手动修改课表接口
+
+<table>
+    <tr>
+        <td>请求地址：</td>
+        <td colspan="4">http://120.79.221.7/kebiao/manualmodify</td>
+    </tr>
+    <tr>
+        <td>请求方式：</td>
+        <td colspan="4">POST</td>
+    </tr>
+    <tr>
+        <td>返回值类型：</td>
+        <td colspan="4">Json</td>
+    </tr>
+    <tr>
+            <td>请求参数</td>
+            <td>参数名</td>
+            <td>参数类型</td>
+            <td>是否必填</td>
+            <td>说明</td>
+        </tr>
+        <tr>
+            <td>课表信息</td>
+            <td>class_list</td>
+            <td>Json</td>
+            <td>Y</td>
+            <td>格式和上面的课表格式一样</td>
+        </tr>
+        <tr>
+             <td colspan="5">返回结果</td>
+        </tr>
+    <tr>
+        <td>返回参数</td>
+        <td>参数名</td>
+        <td>参数类型</td>
+        <td>是否必填</td>
+        <td>说明</td>
+    </tr>
+    <tr>
+        <td>结果</td>
+        <td>result</td>
+        <td>Integer</td>
+        <td>Y</td>
+        <td>1成功；0失败</td>
+    </tr>
+    <tr>
+        <td>错误信息</td>
+        <td>msg</td>
+        <td>String</td>
+        <td>Y</td>
+        <td>result为1时空，result为0时为"请先微信授权"</td>
+    </tr>
+</table>
+    
+###4、取消学号绑定接口
 
 <table>
     <tr>
