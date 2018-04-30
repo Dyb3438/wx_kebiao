@@ -1,5 +1,6 @@
 App({
     globalData: {
+        hasBind: "0",
         class: wx.getStorageSync("class"),
         month: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
         colors: ["#93E7EA", "#BBEB59", "#CA90F4", "#92CEF4", "#86EDAA", "#F6C664", "#F19896", "#8FAFF8", "#F2A584", "#A791F8", "#F2A2D5", "#F4DF71"],
@@ -19,7 +20,18 @@ App({
                             'Content-Type': 'application/x-www-form-urlencoded'
                         },
                         success: (res) => {
-                            console.log(res)
+                            console.log(res);
+                            this.globalData.hasBind = res.data.result
+                            if (res.data.result == 1) {
+                                this.globalData.msg = res.data.return
+                            }
+                            console.log(this.globalData)
+                            if (this.setDataIndex) {
+                                this.setDataIndex({
+                                    msg: res.data.return,
+                                    hasBind: res.data.result
+                                })
+                            }
                             wx.setStorage({
                                 key: 'sessionid',
                                 data: res.data.sessionid,
@@ -48,6 +60,37 @@ App({
             },
             complete: (res) => {
 
+            }
+        })
+        wx.getSetting({
+            success: res => {
+                if (res.authSetting['scope.userInfo']) {
+                    wx.getUserInfo({
+                        success: (res) => {
+                            // let userInfo = res.userInfo
+                            // let nickName = userInfo.nickName
+                            // let avatarUrl = userInfo.avatarUrl
+                            // let gender = userInfo.gender // 性别 0：未知、1：男、2：女
+                            // let province = userInfo.province
+                            // let city = userInfo.city
+                            // let country = userInfo.country
+                            // let signature = res.signature
+                            // let encryptData = res.encryptData
+                            this.globalData.userInfo = res.userInfo;
+                            if (this.setDataIndex) {
+                                this.setDataIndex({
+                                    userInfo: res.userInfo
+                                })
+                            }
+                        },
+                        fail: (res) => {
+
+                        },
+                        complete: (res) => {
+
+                        }
+                    })
+                }
             }
         })
         var today = new Date();

@@ -33,6 +33,18 @@ Page({
         }
         if (options.detail) {
             var classMsg = app.globalData.class[parseInt(options.detail)];
+            wx.setNavigationBarTitle({
+                title: classMsg.classname,
+                success: (res) => {
+                    
+                },
+                fail: (res) => {
+                    
+                },
+                complete: (res) => {
+                    
+                }
+            })
             temp.classname = classMsg.classname;
             temp.day = parseInt(classMsg.day) - 1;
             temp.classTime = [parseInt(classMsg.class[0]) - 1, parseInt(classMsg.class[classMsg.class.length - 1]) - 1];
@@ -146,6 +158,10 @@ Page({
         var temp = this.initData();
         // console.log(temp);
         app.addClass(temp);
+        app.updateSchedule({
+            class: app.globalData.class
+        });
+        this.update();
         // console.log(typeof temp);
         // wx.navigateBack();
     },
@@ -166,6 +182,10 @@ Page({
 
             }
         })
+        this.update();
+        app.updateSchedule({
+            class: app.globalData.class
+        });
         wx.navigateBack();
     },
 
@@ -195,8 +215,37 @@ Page({
 
                         }
                     })
+                    this.update();
+                    app.updateSchedule({
+                        class: app.globalData.class
+                    });
                     wx.navigateBack();
                 }
+            },
+            fail: (res) => {
+
+            },
+            complete: (res) => {
+
+            }
+        })
+    },
+
+    update: function() {
+        console.log(JSON.stringify(app.globalData.class))
+        wx.request({
+            // 必需
+            url: 'http://120.79.221.7/wx_kebiao/kebiao/manualmodify',
+            method: "POST",
+            data: {
+                class_list: JSON.stringify(app.globalData.class)
+            },
+            header: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                "cookie": "PHPSESSID=" + wx.getStorageSync('sessionid')
+            },
+            success: (res) => {
+                console.log(res);
             },
             fail: (res) => {
 

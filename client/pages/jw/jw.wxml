@@ -11,6 +11,7 @@
     <view class="input-area input-container input-area-self">是否加载课表
         <switch bindchange="dowhat"></switch>
     </view>
+    <text hidden="{{do == 0}}" class="warn-color warn-size">此操作会覆盖原有课表</text>
     <view class="input-area input-container input-area-self">
         <input name="txtSecretCode" placeholder="验证码" confirm-type="done" class="input"></input>
         <image class="input-img" src="{{codeImg}}" mode="scaleToFill" bind:tap="changeCode"></image>

@@ -1,4 +1,7 @@
 // pages/setClassTime/set.js
+
+const app = getApp();
+
 Page({
 
     /**
@@ -87,6 +90,9 @@ Page({
             complete: function(res) {
 
             }
+        })
+        app.updateSchedule({
+            scheduleTime: this.data.temp
         })
         wx.navigateBack({
             delta: 1
