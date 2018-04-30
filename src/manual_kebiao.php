@@ -8,7 +8,7 @@ use dyb\db_information;
 $entry=new entry();
 $db_information=new db_information();
 
-$class_list=$_POST['class_list'];
+$class_list=json_decode($_POST['class_list']);
 
 session_start();
 $openid=$_SESSION['openid'];
