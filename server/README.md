@@ -46,12 +46,19 @@
         <td>储存在本地，用于以后请求作为header</td>
     </tr>
     <tr>
-        <td>个人信息</td>
-        <td>information</td>
-        <td>Array</td>
+        <td>结果</td>
+        <td>result</td>
+        <td>Integer</td>
         <td>Y</td>
-        <td>用于下次提交表单</td>
+        <td>1代表获取个人信息，0代表要进行初始化</td>
     </tr>
+    <tr>
+            <td>返回信息</td>
+            <td>return</td>
+            <td>当result为0时为字符串；当result为1时为数组</td>
+            <td>Y</td>
+            <td>0返回"请进行初始化"；1返回个人信息数组</td>
+        </tr>
 </table>
 
 #### 个人信息格式：
