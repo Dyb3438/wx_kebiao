@@ -25,7 +25,7 @@ if($find_openid==null){
 session_start();
 $_SESSION['openid']=$arr['openid'];
 $_SESSION['session_key']=$arr['session_key'];
-$_SESSION['xh']=isset($find_openid[0]['xh'])?$find_openid:"";
+$_SESSION['xh']=isset($find_openid[0]['xh'])?$find_openid[0]['xh']:"";
 
 $return=array(
     "xuehao"=>isset($find_openid[0]['xh'])?$find_openid[0]['xh']:"",

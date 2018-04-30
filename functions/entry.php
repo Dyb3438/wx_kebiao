@@ -9,7 +9,7 @@ class entry
 {
     public $connection;
     function entry_kebiao($class,$xh,$school,$openid){
-        if($xh===null) {
+        if($xh!=null) {
             preg_match_all("/^\w{4}/", $xh, $year);
             $year = $year[0][0];
             check_db($year);
