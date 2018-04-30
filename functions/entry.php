@@ -12,7 +12,7 @@ class entry
         if($xh!=null) {
             preg_match_all("/^\w{4}/", $xh, $year);
             $year = $year[0][0];
-            check_db($year);
+            $this->check_db($year);
         }else{
             $this->connection=new Connection(DB_HOST, DB_PORT, DB_USER, DB_PW, "wx_otherkebiao");
             $xh=$openid;
@@ -101,6 +101,7 @@ class entry
     function check_db($year){
         $this->connection=new Connection(DB_HOST, DB_PORT, DB_USER, DB_PW, "mysql");
         $this->connection->query("CREATE DATABASE IF NOT EXISTS wx_".$year."kebiao");
+        $this->connection=new Connection(DB_HOST, DB_PORT, DB_USER, DB_PW, "wx_".$year."kebiao");
         $this->connection->query("CREATE TABLE IF NOT EXISTS `monday` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `xh` bigint(20) NOT NULL,
@@ -192,6 +193,5 @@ class entry
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 ");
-        $this->connection=new Connection(DB_HOST, DB_PORT, DB_USER, DB_PW, "wx_".$year."kebiao");
     }
 }
