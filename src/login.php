@@ -19,7 +19,7 @@ $find_openid=$connection->select('*')->from("users")->where("openid=:openid")->b
 if($find_openid==null){
     $add_openid=$connection->insert('users')->cols(array(
         'openid'=>$openid
-    ))->query;
+    ))->query();
 }
 //session会话中存放openid、session_key和学号
 session_start();
