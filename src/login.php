@@ -20,6 +20,18 @@ if($find_openid==null){
     $add_openid=$connection->insert('users')->cols(array(
         'openid'=>$openid
     ))->query();
+    $result="0";
+    $return="请进行初始化";
+}else{
+    $result="1";
+    $return=array(
+        "xuehao"=>$find_openid[0]['xh'],
+        "name"=>$find_openid[0]['name'],
+        "classroom"=>$find_openid[0]['classroom'],
+        "major"=>$find_openid[0]['major'],
+        "school"=>$find_openid[0]['school'],
+        "college"=>$find_openid[0]['college']
+    );
 }
 //session会话中存放openid、session_key和学号
 session_start();
@@ -27,12 +39,5 @@ $_SESSION['openid']=$arr['openid'];
 $_SESSION['session_key']=$arr['session_key'];
 $_SESSION['xh']=isset($find_openid[0]['xh'])?$find_openid[0]['xh']:"";
 
-$return=array(
-    "xuehao"=>isset($find_openid[0]['xh'])?$find_openid[0]['xh']:"",
-    "name"=>isset($find_openid[0]['name'])?$find_openid[0]['name']:"",
-    "classroom"=>isset($find_openid[0]['classroom'])?$find_openid[0]['classroom']:"",
-    "major"=>isset($find_openid[0]['major'])?$find_openid[0]['major']:"",
-    "school"=>isset($find_openid[0]['school'])?$find_openid[0]['school']:"",
-    "college"=>isset($find_openid[0]['college'])?$find_openid[0]['college']:""
-        );
-echo json_encode(array("sessionid"=>session_id(),"information"=>$return));
+
+echo json_encode(array("sessionid"=>session_id(),"result"=>$result,"return"=>$return));
