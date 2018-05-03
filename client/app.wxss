@@ -74,3 +74,11 @@ view {
     justify-content: center;
     color: rgb(50,120,15);
 }
+
+.warn-color {
+    color: #c00;
+}
+
+.warn-size {
+    font-size: 32rpx;
+}

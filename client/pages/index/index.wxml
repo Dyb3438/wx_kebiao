@@ -1,2 +1,11 @@
 <!--pages/index/index.wxml-->
-<text>pages/index/index.wxml</text>
+<view wx:if="{{hasBind == 0}}" bind:tap="bingMsg">绑定信息</view>
+<block wx:else>
+    <image class="" src="{{userInfo.avatarUrl}}" mode="scaleToFill"></image>
+    <view>姓名 {{msg.name}}</view>
+    <view>学号 {{msg.xuehao}}</view>
+    <view>学校 {{msg.college}}</view>
+    <view>专业 {{msg.major}}</view>
+    <view>兴趣</view>
+    <view>修改信息</view>
+</block>

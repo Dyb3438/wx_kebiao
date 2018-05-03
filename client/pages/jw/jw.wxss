@@ -21,3 +21,7 @@ page {
     width: 208rpx;
     height: 80rpx
 }
+
+.warn-size {
+    padding: 0 20rpx;
+}

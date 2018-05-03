@@ -17,6 +17,9 @@ Page({
         week: app.globalData.week,
         weekValue: 0,
         classNum: wx.getStorageSync('classNum') || 12,
+        onlyThisWeek: wx.getStorageSync('onlyThisWeek'),
+        scheduleTime: wx.getStorageSync('classTime') || ["00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00"],
+        class: app.globalData.class,
         date: [{
             "date": 0,
             "day": "周一"
@@ -47,6 +50,9 @@ Page({
     onLoad: function(options) {
         var page = this;
         initTime(page);
+        app.updateSchedule = obj => {
+            this.setData(obj);
+        }
     },
 
     /**
@@ -60,11 +66,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-        this.setData({
-            onlyThisWeek: wx.getStorageSync('onlyThisWeek'),
-            scheduleTime: wx.getStorageSync('classTime') || ["00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00"],
-            class: app.globalData.class
-        })
+
     },
 
     /**
@@ -236,6 +238,14 @@ Page({
         this.setData({
             classNum: num,
             scheduleTime: temp
+        })
+    },
+
+    seeDetail: function(e) {
+        // console.log(e);
+        console.log(e.currentTarget.dataset.index);
+        wx.navigateTo({
+            url: '/pages/schedule/addClass?detail=' + e.currentTarget.dataset.index
         })
     }
 })

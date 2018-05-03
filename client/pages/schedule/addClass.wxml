@@ -1,11 +1,11 @@
 <!--pages/addClass/addClass.wxml-->
 <view class="input-area input-area-self">
     <text class="input-name">课名</text>
-    <input class="input" placeholder="未填写"></input>
+    <input class="input" placeholder="未填写" data-name="classname" bindchange="dataChange" value="{{classname}}"></input>
 </view>
 <view class="input-area">
     <text class="input-name">教室</text>
-    <input class="input" placeholder="未填写"></input>
+    <input class="input" placeholder="未填写" data-name="classroom" bindchange="dataChange" value="{{classroom}}"></input>
 </view>
 <view class="input-area">
     <text class="input-name">周数</text>
@@ -13,6 +13,14 @@
         {{startWeek}}-{{endWeek}}周
     </picker>
 </view>
+    <radio-group class="input-area" data-name="single_week" bindchange="dataChange">
+        <block wx:for="{{['全部', '单周', '双周']}}" wx:key="index">
+            <label class="input">
+                <radio wx:if="{{single_week == index}}" checked="ture" value="{{index}}">{{item}}</radio>
+                <radio wx:else value="{{index}}">{{item}}</radio>
+            </label>
+        </block>
+    </radio-group>
 <view class="input-area">
     <text class="input-name">节数</text>
     <picker class="input" mode="multiSelector" range="{{[weekDay, startClass, endClass]}}" value="{{[day, classTime[0], classTime[1]]}}" bindchange="setClassTime">
@@ -21,6 +29,12 @@
 </view>
 <view class="input-area">
     <text class="input-name">老师</text>
-    <input class="input" placeholder="未填写"></input>
+    <input class="input" placeholder="未填写" data-name="teacher" bindchange="dataChange" value="{{teacher}}"></input>
 </view>
-<text class="input-area input-area-self input-button">保存</text>
+<block wx:if="{{detail}}">
+    <text  class="input-area input-area-self input-button" bind:tap="change">修改</text>
+    <text  class="input-area input-area-self input-button warn-color" bind:tap="del">删除</text>
+</block>
+<block wx:else>
+    <text class="input-area input-area-self input-button" bind:tap="save">保存</text>
+</block>
