@@ -295,13 +295,14 @@
     </tr>
 </table>
     
-    
-### 4、取消学号绑定接口
+## 三、个人信息页面
+
+### 1、取消学号绑定接口
 
 <table>
     <tr>
         <td>请求地址：</td>
-        <td colspan="4">http://120.79.221.7/wx_kebiao/unbind</td>
+        <td colspan="4">http://120.79.221.7/wx_kebiao/information/unbind</td>
     </tr>
     <tr>
         <td>请求方式：</td>
@@ -332,6 +333,140 @@
         <td>N</td>
         <td>当result为0时返回：请先绑定</td>
     </tr>
+</table>
+
+### 2、手动修改个人信息（不包括学校和学号）
+
+<table>
+ <tr>
+        <td>请求地址：</td>
+        <td colspan="4">http://120.79.221.7/wx_kebiao/information/manualchange</td>
+    </tr>
+    <tr>
+        <td>请求方式：</td>
+        <td colspan="4">POST</td>
+    </tr>
+    <tr>
+        <td>返回值类型：</td>
+        <td colspan="4">Json</td>
+    </tr>
+    <tr>
+        <td>请求参数</td>
+        <td>参数名</td>
+        <td>参数类型</td>
+        <td>是否必填</td>
+        <td>说明</td>
+    </tr>
+    <tr>
+        <td>姓名</td>
+        <td>name</td>
+        <td>String</td>
+        <td>Y</td>
+        <td>如无修改，返回修改前的值</td>
+    </tr>
+    <tr>
+        <td>班级</td>
+        <td>classroom</td>
+        <td>String</td>
+        <td>Y</td>
+        <td>如无修改，返回修改前的值</td>
+    </tr>
+    <tr>
+        <td>专业</td>
+        <td>major</td>
+        <td>String</td>
+        <td>Y</td>
+        <td>如无修改，返回修改前的值</td>
+    </tr>
+    <tr>
+        <td>学院</td>
+        <td>school</td>
+        <td>String</td>
+        <td>Y</td>
+        <td>如无修改，返回修改前的值</td>
+    </tr>
+    <tr>
+        <td colspan="5">返回结果</td>
+    </tr>
+    <tr>
+        <td>返回参数</td>
+        <td>参数名</td>
+        <td>参数类型</td>
+        <td>是否必填</td>
+        <td>说明</td>
+    </tr>
+    <tr>
+        <td>结果</td>
+        <td>result</td>
+        <td>Integer</td>
+        <td>Y</td>
+        <td>1修改成功，0修改出错</td>
+   </tr>
+</table>
+
+### 3、绑定（修改）学校与学号接口（要先取消绑定后才能进行，相当于重新绑定）
+
+#### ①华工（用教务登陆）
+
+#### ②非华工接口
+
+<table>
+<tr>
+    <td>请求地址：</td>
+    <td colspan="4">http://120.79.221.7/wx_kebiao/information/bind</td>
+</tr>
+<tr>
+    <td>请求方式：</td>
+    <td colspan="4">POST</td>
+</tr>
+<tr>
+    <td>返回值类型：</td>
+    <td colspan="4">Json</td>
+</tr>
+<tr>
+    <td>请求参数</td>
+    <td>参数名</td>
+    <td>参数类型</td>
+    <td>是否必填</td>
+    <td>说明</td>
+</tr>
+<tr>
+    <td>学校</td>
+    <td>college</td>
+    <td>String</td>
+    <td>Y</td>
+    <td><td>
+</tr>
+<tr>
+    <td>学号</td>
+    <td>xh</td>
+    <td>Integer</td>
+    <td>Y</td>
+    <td></td>
+</tr>
+<tr>
+    <td colspan="5">返回结果</td>
+</tr>
+<tr>
+    <td>返回参数</td>
+    <td>参数名</td>
+    <td>参数类型</td>
+    <td>是否必填</td>
+    <td>说明</td>
+</tr>
+<tr>
+    <td>结果</td>
+    <td>result</td>
+    <td>Integer</td>
+    <td>Y</td>
+    <td>1修改成功，0修改出错</td>
+</tr>
+<tr>
+    <td>错误信息</td>
+    <td>msg</td>
+    <td>String</td>
+    <td>Y</td>
+    <td>①此微信账号已绑定学号，请取消绑定后重试<br>②此学号已经绑定微信账号，请取消绑定后重试<br>③录入出错啦<br>④华工学生请用教务绑定</td>
 </table>
 
 
