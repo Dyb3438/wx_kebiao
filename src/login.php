@@ -17,11 +17,8 @@ $arr=get_object_vars($result);
 $openid=$arr['openid'];
 $find_openid=$connection->select('*')->from("users")->where("openid=:openid")->bindValues(array("openid"=>$openid))->query();
 if($find_openid==null){
-    $add_openid=$connection->insert('users')->cols(array(
-        'openid'=>$openid
-    ))->query();
     $result="0";
-    $return="请进行初始化";
+    $return="账号未绑定";
 }else{
     $result="1";
     $return=array(

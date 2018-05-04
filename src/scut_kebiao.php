@@ -76,7 +76,7 @@ if (isset($xm[1][0])){
         if($openid==null){
             $result=array('msg'=>"请先微信授权，再绑定身份");
         }else {
-            $result = $entry->entry_information($information, $openid);
+            $result = $entry->entry_information($information['xuehao'],$information['xingming'],$information['xingzhengban'],$information['zhuanye'],$information['xueyuan'],"华南理工大学",$openid);
         }
     }
     if($do=="1"||$do=="2") {
