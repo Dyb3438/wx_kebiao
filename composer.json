@@ -2,7 +2,8 @@
     "name": "dyb/spring2018",
     "description": "used to recruit members in spring,2018",
     "require": {
-        "workerman/mysql": "^1.0"
+        "workerman/mysql": "^1.0",
+        "tamce/router":"^1.0"
     },
     "autoload":{
         "psr-4": {

@@ -1,10 +1,6 @@
 RewriteEngine On
-RewriteRule ^login$  src/login.php [QSA,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
 
-RewriteRule ^captcha$  src/captcha.php [QSA,L]
-RewriteRule ^kebiao/loading$  src/scut_kebiao.php [QSA,L]
-RewriteRule ^kebiao/manualmodify$  src/manual_kebiao.php [QSA,L]
 
-RewriteRule ^information/unbind$  src/unbind.php [QSA,L]
-RewriteRule ^information/bind$  src/bind.php [QSA,L]
-RewriteRule ^information/manualchange$ src/manual_information.php [QSA,L]
