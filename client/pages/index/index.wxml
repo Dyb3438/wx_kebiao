@@ -1,5 +1,5 @@
 <!--pages/index/index.wxml-->
-<view wx:if="{{!userInfo}}" class="container">
+<view wx:if="{{!userInfo || hasBind == 0}}" class="container">
     <button wx:if="{{hasBind == 0}}" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">绑定信息</button>
     <button wx:else open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">获取信息</button>
 </view>

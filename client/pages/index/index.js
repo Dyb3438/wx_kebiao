@@ -111,10 +111,11 @@ Page({
                                 wx.hideLoading();
                                 wx.navigateBack();
                             } else {
+                                console.log(res);
                                 wx.showToast({
                                     title: res.data.msg,
                                     icon: 'none', // "success", "loading", "none"
-                                    // duration: 1500,
+                                    duration: 1500,
                                     mask: false,
                                 })
                             }

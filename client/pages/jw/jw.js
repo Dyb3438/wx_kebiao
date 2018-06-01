@@ -21,12 +21,14 @@ Page({
                 wx.showToast({
                     title: '请先绑定学号',
                     icon: 'none', // "success", "loading", "none"
-                    // duration: 1500,
+                    duration: 1500,
                     mask: false,
                 })
-                wx.navigateBack({
-                    delta: 1
-                })
+                setTimeout(function() {
+                    wx.navigateBack({
+                        delta: 1
+                    })
+                }, 1500);
                 return;
             }
             this.setData({
