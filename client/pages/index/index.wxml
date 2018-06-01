@@ -25,4 +25,7 @@
     <!-- <navigator class="input-area input-area-self input-button" url="/pages/index/modify" open-type="navigate">
         <view>修改信息</view>
     </navigator> -->
+    <view class="input-area input-area-self input-button" bind:tap="unbind">
+        <view>解除绑定</view>
+    </view>
 </block>

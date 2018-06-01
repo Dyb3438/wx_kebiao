@@ -28,7 +28,7 @@
                     <text>{{index + 1}}\n{{item}}</text>
                 </block>
             </view>
-            <view class="schedule-class">
+            <view class="schedule-class" bind:tap="appearPlus">
                 <block wx:for="{{class}}" wx:key="index">
                     <block wx:if="{{(weekValue + 1) >= item.long[0] && (weekValue + 1) <= item.long[1]}}">
                         <view wx:if="{{item.single_week == 0 || item.single_week == 1 && ((weekValue + 1) % 2) == 1 || item.single_week == 2 && ((weekValue + 1) % 2) == 0}}" class="schedule-class-box" style="top: {{(item.class[0]-1) * 120}}rpx;left: {{(item.day-1) * 14.285714285714}}%; height: {{item.class.length*120}}rpx;" data-index="{{index}}" bind:tap="seeDetail">

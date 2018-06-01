@@ -87,5 +87,44 @@ Page({
                 url: '/pages/jw/jw'
             })
         }
+    },
+
+    unbind: function() {
+        wx.showModal({
+            title: "提醒",
+            content: "确定要解除绑定吗？",
+            success: function(res) {
+                if (res.confirm) {
+                    wx.showLoading({
+                        title: '解除绑定中',
+                        mask: false,
+                    })
+                    wx.request({
+                        url: 'http://120.79.221.7/wx_kebiao/information/unbind',
+                        header: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            "cookie": "PHPSESSID=" + wx.getStorageSync('sessionid')
+                        },
+                        success: (res) => {
+                            if (res.data.result == 1) {
+                                app.login();
+                                wx.hideLoading();
+                                wx.navigateBack();
+                            } else {
+                                wx.showToast({
+                                    title: res.data.msg,
+                                    icon: 'none', // "success", "loading", "none"
+                                    // duration: 1500,
+                                    mask: false,
+                                })
+                            }
+                        },
+                        fail: (res) => {
+                            console.log(res);
+                        },
+                    })
+                }
+            }
+        })
     }
 })

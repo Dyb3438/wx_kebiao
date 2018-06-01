@@ -258,6 +258,10 @@ Page({
         wx.navigateTo({
             url: '/pages/schedule/addClass?detail=' + e.currentTarget.dataset.index
         })
+    },
+
+    appearPlus: function(e) {
+        console.log(e);
     }
 })
 
