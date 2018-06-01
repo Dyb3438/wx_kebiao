@@ -1,1 +1,28 @@
 /* pages/index/index.wxss */
+page {
+    background-color:#EEE;
+}
+
+.avatar-area {
+    width: 100vw;
+    height: 480rpx;
+    display: flex;
+    margin-bottom: 20rpx;
+    background-color: rgb(200,240,180);
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar {
+    width: 240rpx;
+    height: 240rpx;
+    border-radius: 50%;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

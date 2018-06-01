@@ -29,7 +29,7 @@ view {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20rpx;
+    padding: 20rpx 30rpx;
     border-width: 0;
     border-bottom-width: 1rpx;
     border-style: solid;

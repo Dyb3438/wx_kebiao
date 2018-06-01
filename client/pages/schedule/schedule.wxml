@@ -4,7 +4,7 @@
     <view class='top-center'>
         <picker range="{{week}}" value="{{weekValue}}" bindchange="weekChange">
             <view>第{{weekValue + 1}}周</view>
-            <view class="semester">{{semester}}</view>
+            <view class="semester">{{semesters[semesterIndex[0]]}} 第{{semesterIndex[1] + 1}}学期</view>
         </picker>
     </view>
     <view class='top-right' bind:tap="menuToggle">
@@ -55,16 +55,22 @@
         <view class="floor menu-background" bind:tap="menuToggle"></view>
         <view class="menu-list-background">
             <view class="menu-list" bind:tap="addClass">添加课程</view>
+            <picker mode="multiSelector" range="{{[semesters, [1, 2, 3]]}}" value="{{semesterIndex}}" bindchange="changeSemester">
+                <view class="menu-list">
+                    <text>当前学期 </text>
+                    <text class="preview">{{semesters[semesterIndex[0]]}} 第{{semesterIndex[1] + 1}}学期 ></text>
+                </view>
+            </picker>
             <picker range="{{week}}" value="{{thisWeek - 1}}" bindchange="changeWeek">
                 <view class="menu-list">
                     <text>当前周数 </text>
-                    <text class="preview">第{{thisWeek}}周></text>
+                    <text class="preview">第{{thisWeek}}周 ></text>
                 </view>
             </picker>
             <picker range="{{[5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,14,22,23,24]}}" value="{{classNum - 5}}" bindchange="changeNum">
                 <view class="menu-list">
                     <text>设置课表最大节数 </text>
-                    <text class="preview">{{classNum}}节></text>
+                    <text class="preview">{{classNum}}节 ></text>
                 </view>
             </picker>
             <navigator class="menu-list" url="/pages/setClassTime/setClassTime" open-type="navigate">设置上课时间</navigator>

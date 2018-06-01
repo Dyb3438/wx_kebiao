@@ -3,12 +3,12 @@
     <input name="rnd" value="{{rnd}}" class="input-hidden"></input>
     <input name="do" value="{{do}}" class="input-hidden"></input>
     <view class="input-area input-area-self">
-        <input name="xh" placeholder="学号" type="number" confirm-type="next" class="input"></input>
+        <input name="xh" placeholder="学号" type="number" confirm-type="next" class="input" value="{{xuehao}}" disabled="{{do == 1}}"></input>
     </view>
     <view class="input-area input-area-self">
         <input name="pw" placeholder="密码" password="true" confirm-type="next" class="input"></input>
     </view>
-    <view class="input-area input-container input-area-self">是否加载课表
+    <view class="input-area input-container input-area-self" hidden="{{do == 1}}">是否加载课表
         <switch bindchange="dowhat"></switch>
     </view>
     <text hidden="{{do == 0}}" class="warn-color warn-size">此操作会覆盖原有课表</text>
@@ -17,6 +17,7 @@
         <image class="input-img" src="{{codeImg}}" mode="scaleToFill" bind:tap="changeCode"></image>
     </view>
     <view class="input-button input-area-self">
-        <button form-type="submit" type="primary">登陆</button>
+        <button wx:if="{{do == 1}}" form-type="submit" type="primary">获取</button>
+        <button wx:else form-type="submit" type="primary">登陆</button>
     </view>
 </form>

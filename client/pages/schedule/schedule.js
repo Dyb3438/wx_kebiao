@@ -10,7 +10,8 @@ Page({
     data: {
         menu: "none",
         thisWeek: 1,
-        semester: "大一 第2学期",
+        semesters: ["大一", "大二", "大三", "大四"],
+        semesterIndex: wx.getStorageSync('semesterIndex') || [0, 0],
         thisMonth: 0,
         month: 0,
         today: 0,
@@ -152,6 +153,16 @@ Page({
         }
     },
 
+    changeSemester: function(e) {
+        wx.setStorage({
+            key: 'semesterIndex',
+            data: e.detail.value,
+        })
+        this.setData({
+            semesterIndex: e.detail.value,
+        });
+    },
+
     changeWeek: function(e) {
         var temp = parseInt(e.detail.value) + 1;
         app.setWeek(temp);
@@ -168,7 +179,7 @@ Page({
                 console.log(res);
                 if (res.tapIndex == 0) {
                     wx.navigateTo({
-                        url: '/pages/jw/jw'
+                        url: '/pages/jw/jw?do=1'
                     })
                 } else if (res.tapIndex == 1) {
                     wx.navigateTo({
@@ -263,13 +274,14 @@ function initTime(page) {
     temp.weekValue = temp.thisWeek - 1;
     if (firstDay < 1) {
         if (today.getMonth() == 0) {
-            firstDay = app.globalData.month[11] - firstDay;
+            firstDay = app.globalData.month[11] + firstDay;
             temp.month = 11;
         } else {
-            firstDay = app.globalData.month[today.getMonth() - 1] - firstDay;
+            firstDay = app.globalData.month[today.getMonth() - 1] + firstDay;
             temp.month += -1;
         }
     }
+    console.log(firstDay);
     for (var i = 0; i <= 6; i++) {
         var tempName = "date[" + i + "].date";
         temp[tempName] = firstDay;

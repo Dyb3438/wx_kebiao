@@ -8,13 +8,38 @@ Page({
      * 页面的初始数据
      */
     data: {
-        do: 0
+        do: 0,
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+        console.log(options);
+        if (options.do == 1) {
+            if (app.globalData.hasBind == 0) {
+                wx.showToast({
+                    title: '请先绑定学号',
+                    icon: 'none', // "success", "loading", "none"
+                    // duration: 1500,
+                    mask: false,
+                })
+                wx.navigateBack({
+                    delta: 1
+                })
+                return;
+            }
+            this.setData({
+                do: 1,
+                xuehao: app.globalData.msg.xuehao
+            });
+            wx.setNavigationBarTitle({
+                title: '获取课表',
+                fail: (res) => {
+                    console.log(res)
+                },
+            })
+        }
         this.changeCode();
     },
 
@@ -69,6 +94,10 @@ Page({
 
     logIn: function(e) {
         console.log(e.detail.value);
+        wx.showLoading({
+            title: '课表获取中',
+            mask: false,
+        })
         wx.request({
             // 必需
             url: 'http://120.79.221.7/wx_kebiao/kebiao/loading',
@@ -92,16 +121,34 @@ Page({
                             data: newClass
                         });
                         app.globalData.class = newClass;
+                        app.updateSchedule({
+                            week: app.globalData.week,
+                            classNum: wx.getStorageSync('classNum') || 12,
+                            onlyThisWeek: wx.getStorageSync('onlyThisWeek'),
+                            scheduleTime: wx.getStorageSync('classTime') || ["00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00"],
+                            class: app.globalData.class,
+                        });
                     }
                     app.setWeek(parseInt(res.data.week));
+                    if (e.detail.value.do != 1) {
+                        app.login();
+                    }
+                    wx.hideLoading();
+                    wx.navigateBack({
+                        delta: 1
+                    })
+                } else if (res.data.result == 0) {
+                    wx.showToast({
+                        title: res.data.msg,
+                        icon: 'none', // "success", "loading", "none"
+                        duration: 1500,
+                        mask: false,
+                    })
                 }
             },
             fail: (res) => {
                 console.log(res);
             },
-            complete: (res) => {
-
-            }
         })
     },
 
@@ -124,9 +171,6 @@ Page({
             fail: (res) => {
                 console.log(res);
             },
-            complete: (res) => {
-
-            }
         })
     },
 

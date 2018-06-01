@@ -1,4 +1,4 @@
-// pages/index/index.js
+// pages/index/modify.js
 
 const app = getApp();
 
@@ -8,23 +8,14 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        userInfo: app.globalData.userInfo,
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        this.setData({
-            hasBind: app.globalData.hasBind,
-            msg: app.globalData.msg || {},
-            userInfo: app.globalData.userInfo,
-        })
-        // console.log(!this.data.userInfo);
-        // console.log(app.globalData)
-        app.setDataIndex = obj => {
-            this.setData(obj)
-        }
+
     },
 
     /**
@@ -74,18 +65,5 @@ Page({
      */
     onShareAppMessage: function() {
 
-    },
-
-    onGotUserInfo: function(res) {
-        console.log(res);
-        app.globalData.userInfo = res.detail.userInfo;
-        this.setData({
-            userInfo: res.detail.userInfo
-        })
-        if (this.data.hasBind == 0) {
-            wx.navigateTo({
-                url: '/pages/jw/jw'
-            })
-        }
     }
 })

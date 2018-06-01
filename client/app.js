@@ -3,66 +3,14 @@ App({
         hasBind: "0",
         class: wx.getStorageSync("class"),
         month: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
-        colors: ["#93E7EA", "#BBEB59", "#CA90F4", "#92CEF4", "#86EDAA", "#F6C664", "#F19896", "#8FAFF8", "#F2A584", "#A791F8", "#F2A2D5", "#F4DF71"]
+        colors: ["#93E7EA", "#BBEB59", "#CA90F4", "#92CEF4", "#86EDAA", "#F6C664", "#F19896", "#8FAFF8", "#F2A584", "#A791F8", "#F2A2D5", "#F4DF71"],
+        week: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
     },
     onLaunch: function() {
-        wx.login({
-            success: (res) => {
-                if (res.code) {
-                    wx.request({
-                        // 必需
-                        url: 'http://120.79.221.7/wx_kebiao/login',
-                        data: {
-                            code: res.code
-                        },
-                        header: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        },
-                        success: (res) => {
-                            console.log(res);
-                            this.globalData.hasBind = res.data.result
-                            if (res.data.result == 1) {
-                                this.globalData.msg = res.data.return
-                            }
-                            console.log(this.globalData)
-                            if (this.setDataIndex) {
-                                this.setDataIndex({
-                                    msg: res.data.return,
-                                    hasBind: res.data.result
-                                })
-                            }
-                            wx.setStorage({
-                                key: 'sessionid',
-                                data: res.data.sessionid,
-                                success: function(res) {
-                                    console.log(res);
-                                },
-                                fail: function(res) {
-
-                                },
-                                complete: function(res) {
-
-                                }
-                            })
-                        },
-                        fail: (res) => {
-
-                        },
-                        complete: (res) => {
-
-                        }
-                    })
-                }
-            },
-            fail: (res) => {
-
-            },
-            complete: (res) => {
-
-            }
-        })
+        this.login();
         wx.getSetting({
             success: res => {
+                console.log(res.authSetting['scope.userInfo']);
                 if (res.authSetting['scope.userInfo']) {
                     wx.getUserInfo({
                         success: (res) => {
@@ -83,11 +31,8 @@ App({
                             }
                         },
                         fail: (res) => {
-
+                            console.log(res);
                         },
-                        complete: (res) => {
-
-                        }
                     })
                 }
             }
@@ -166,5 +111,50 @@ App({
                 }
             })
         }
+    },
+    login: function() {
+        wx.login({
+            success: (res) => {
+                if (res.code) {
+                    wx.request({
+                        // 必需
+                        url: 'http://120.79.221.7/wx_kebiao/login',
+                        data: {
+                            code: res.code
+                        },
+                        header: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        success: (res) => {
+                            console.log(res);
+                            this.globalData.hasBind = res.data.result
+                            if (res.data.result == 1) {
+                                this.globalData.msg = res.data.return
+                            }
+                            console.log(this.globalData)
+                            if (this.setDataIndex) {
+                                this.setDataIndex({
+                                    msg: res.data.return,
+                                    hasBind: res.data.result
+                                })
+                            }
+                            wx.setStorage({
+                                key: 'sessionid',
+                                data: res.data.sessionid,
+                                fail: function(res) {
+                                    console.log(res)
+                                },
+                            })
+                        },
+                        fail: (res) => {
+                            console.log(res);
+                        },
+                    })
+                }
+            },
+            fail: (res) => {
+                console.log(res)
+            },
+        })
     }
 })

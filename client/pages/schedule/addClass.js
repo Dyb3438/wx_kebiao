@@ -35,15 +35,9 @@ Page({
             var classMsg = app.globalData.class[parseInt(options.detail)];
             wx.setNavigationBarTitle({
                 title: classMsg.classname,
-                success: (res) => {
-                    
-                },
                 fail: (res) => {
-                    
+                    console.log(res)
                 },
-                complete: (res) => {
-                    
-                }
             })
             temp.classname = classMsg.classname;
             temp.day = parseInt(classMsg.day) - 1;
