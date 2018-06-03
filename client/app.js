@@ -52,10 +52,15 @@ App({
                 timeWeek: Math.floor((today.getTime() - 316800000) / 604800000),
                 week: thisWeek
             };
-        wx.setStorage({
-            key: 'setWeekTime',
-            data: temp
-        });
+        try {
+            wx.setStorageSync('setWeekTime', temp)
+        } catch (e) {
+            console.log(e)
+        }
+        // wx.setStorage({
+        //     key: 'setWeekTime',
+        //     data: temp
+        // });
         return temp;
     },
     addClass: function(newClass) {
