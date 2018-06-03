@@ -135,6 +135,7 @@ Page({
                     if (e.detail.value.do != 1) {
                         app.login();
                     }
+                    app.initScheduleTime();
                     wx.hideLoading();
                     wx.navigateBack({
                         delta: 1

@@ -54,6 +54,9 @@ Page({
         app.updateSchedule = obj => {
             this.setData(obj);
         }
+        app.initScheduleTime = function() {
+            initTime(page);
+        }
     },
 
     /**
