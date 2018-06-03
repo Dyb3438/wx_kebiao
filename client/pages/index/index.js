@@ -100,7 +100,7 @@ Page({
                         mask: false,
                     })
                     wx.request({
-                        url: 'http://120.79.221.7/wx_kebiao/information/unbind',
+                        url: app.globalData.host + 'wx_kebiao/information/unbind',
                         header: {
                             'Content-Type': 'application/x-www-form-urlencoded',
                             "cookie": "PHPSESSID=" + wx.getStorageSync('sessionid')

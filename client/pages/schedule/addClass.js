@@ -229,7 +229,7 @@ Page({
         console.log(JSON.stringify(app.globalData.class))
         wx.request({
             // 必需
-            url: 'http://120.79.221.7/wx_kebiao/kebiao/manualmodify',
+            url: app.globalData.host + 'wx_kebiao/kebiao/manualmodify',
             method: "POST",
             data: {
                 class_list: JSON.stringify(app.globalData.class)

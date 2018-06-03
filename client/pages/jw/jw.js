@@ -102,7 +102,7 @@ Page({
         })
         wx.request({
             // 必需
-            url: 'http://120.79.221.7/wx_kebiao/kebiao/loading',
+            url: app.globalData.host + 'wx_kebiao/kebiao/loading',
             method: "POST",
             data: e.detail.value,
             header: {
@@ -158,7 +158,7 @@ Page({
     changeCode: function() {
         wx.request({
             // 必需
-            url: 'http://120.79.221.7/wx_kebiao/captcha',
+            url: app.globalData.host + 'wx_kebiao/captcha',
             header: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 "cookie": "PHPSESSID=" + wx.getStorageSync('sessionid')

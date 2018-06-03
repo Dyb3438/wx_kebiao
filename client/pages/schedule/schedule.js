@@ -299,4 +299,5 @@ function initTime(page) {
         }
     }
     page.setData(temp);
+    console.log(temp);
 }

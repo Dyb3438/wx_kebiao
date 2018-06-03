@@ -4,7 +4,8 @@ App({
         class: wx.getStorageSync("class"),
         month: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
         colors: ["#93E7EA", "#BBEB59", "#CA90F4", "#92CEF4", "#86EDAA", "#F6C664", "#F19896", "#8FAFF8", "#F2A584", "#A791F8", "#F2A2D5", "#F4DF71"],
-        week: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+        week: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
+        host: "http://120.79.221.7/",
     },
     onLaunch: function() {
         this.login();
@@ -118,7 +119,7 @@ App({
                 if (res.code) {
                     wx.request({
                         // 必需
-                        url: 'http://120.79.221.7/wx_kebiao/login',
+                        url: this.globalData.host + 'wx_kebiao/login',
                         data: {
                             code: res.code
                         },
