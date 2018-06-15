@@ -21,8 +21,8 @@ if($openid==null){
     }else{
         $unbind_openid = $connection->delete('users')->where('openid=:openid')->bindValues(array('openid'=>$openid))->query();
         if($select_openid[0]['xh']!=null) {
-            preg_match_all("/^\w{4}/", $select_openid[0]['xh'], $year);
-            $connection = new Connection(DB_HOST, DB_PORT, DB_USER, DB_PW, "wx_".$year."kebiao");
+            preg_match_all("/^(\w{4})/", $select_openid[0]['xh'], $year);
+            $connection = new Connection(DB_HOST, DB_PORT, DB_USER, DB_PW, "wx_".$year[1][0]."kebiao");
             $xh=$select_openid[0]['xh'];
             $school=$select_openid[0]['college'];
         }else{
